@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StartupCentral.Models
 {
-    public class Startup
+    public class Startupbs
     {
         [Key]
         public Guid ID { get; set; }
@@ -21,6 +21,7 @@ namespace StartupCentral.Models
         [Required]
         public ICollection<Contato> contatos { get; set; }
         public virtual Benefício benefício { get; set; }
+        public virtual Aceleradora Aceleradora { get; set; }
         public virtual Status status { get; set; }
         public double ConsumoMes { get; set; }
         public double ConsumoAcumulado { get; set; }
@@ -29,7 +30,7 @@ namespace StartupCentral.Models
 
     public class StartupDBContext : DbContext
     {
-        public DbSet<Startup> Startup { get; set; }
+        public DbSet<Startupbs> Startup { get; set; }
         public DbSet<Aceleradora> Aceleradora { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<User> User { get; set; }

@@ -17,7 +17,7 @@ namespace StartupCentral.Models
         [Required]
         public string email { get; set; }
         public ICollection<Aceleradora> aceleradora { get; set; }
-        public ICollection<Startup> startup { get; set; }
+        public ICollection<Startupbs> startup { get; set; }
 
     }
 }

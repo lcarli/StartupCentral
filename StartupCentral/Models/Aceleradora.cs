@@ -20,5 +20,6 @@ namespace StartupCentral.Models
         public virtual Benefício Benefício { get; set; }
         [Required]
         public ICollection<Contato> Contatos { get; set; }
+        public ICollection<Startupbs> Startups { get; set; }
     }
 }

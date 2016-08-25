@@ -198,22 +198,22 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AceleradoraController.cs" />
     <Compile Include="Controllers\BenefícioController.cs" />
     <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\EndereçoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StartupController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Aceleradora.cs" />
+    <Compile Include="Models\AceleradoraController.cs" />
     <Compile Include="Models\Benefício.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Endereço.cs" />
-    <Compile Include="Models\Startup.cs" />
+    <Compile Include="Models\Startupbs.cs" />
+    <Compile Include="Models\StartupbsController.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4491,11 +4491,6 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\Form.cshtml" />
     <Content Include="Views\Home\FormAdvanced.cshtml" />
-    <Content Include="Views\Aceleradoras\Create.cshtml" />
-    <Content Include="Views\Aceleradoras\Delete.cshtml" />
-    <Content Include="Views\Aceleradoras\Details.cshtml" />
-    <Content Include="Views\Aceleradoras\Edit.cshtml" />
-    <Content Include="Views\Aceleradoras\Index.cshtml" />
     <Content Include="Views\Benefício\Create.cshtml" />
     <Content Include="Views\Benefício\Delete.cshtml" />
     <Content Include="Views\Benefício\Details.cshtml" />
@@ -4521,11 +4516,16 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Startup\Create.cshtml" />
-    <Content Include="Views\Startup\Delete.cshtml" />
-    <Content Include="Views\Startup\Details.cshtml" />
-    <Content Include="Views\Startup\Edit.cshtml" />
-    <Content Include="Views\Startup\Index.cshtml" />
+    <Content Include="Views\Aceleradora\Create.cshtml" />
+    <Content Include="Views\Aceleradora\Delete.cshtml" />
+    <Content Include="Views\Aceleradora\Details.cshtml" />
+    <Content Include="Views\Aceleradora\Edit.cshtml" />
+    <Content Include="Views\Aceleradora\Index.cshtml" />
+    <Content Include="Views\Startupbs\Create.cshtml" />
+    <Content Include="Views\Startupbs\Delete.cshtml" />
+    <Content Include="Views\Startupbs\Details.cshtml" />
+    <Content Include="Views\Startupbs\Edit.cshtml" />
+    <Content Include="Views\Startupbs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

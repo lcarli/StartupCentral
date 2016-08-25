@@ -7,112 +7,111 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using StartupCentral.Models;
 
-namespace StartupCentral.Controllers
+namespace StartupCentral.Models
 {
-    public class StartupController : Controller
+    public class AceleradoraController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
 
-        // GET: Startup
+        // GET: Aceleradora
         public async Task<ActionResult> Index()
         {
-            return View(await db.Startup.ToListAsync());
+            return View(await db.Aceleradora.ToListAsync());
         }
 
-        // GET: Startup/Details/5
+        // GET: Aceleradora/Details/5
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Startup startup = await db.Startup.FindAsync(id);
-            if (startup == null)
+            Aceleradora aceleradora = await db.Aceleradora.FindAsync(id);
+            if (aceleradora == null)
             {
                 return HttpNotFound();
             }
-            return View(startup);
+            return View(aceleradora);
         }
 
-        // GET: Startup/Create
+        // GET: Aceleradora/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Startup/Create
+        // POST: Aceleradora/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,nome,email,msa,BizSparkID,ConsumoMes,ConsumoAcumulado,ConsumoPago")] Startup startup)
+        public async Task<ActionResult> Create([Bind(Include = "ID,nome")] Aceleradora aceleradora)
         {
             if (ModelState.IsValid)
             {
-                startup.ID = Guid.NewGuid();
-                db.Startup.Add(startup);
+                aceleradora.ID = Guid.NewGuid();
+                db.Aceleradora.Add(aceleradora);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(startup);
+            return View(aceleradora);
         }
 
-        // GET: Startup/Edit/5
+        // GET: Aceleradora/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Startup startup = await db.Startup.FindAsync(id);
-            if (startup == null)
+            Aceleradora aceleradora = await db.Aceleradora.FindAsync(id);
+            if (aceleradora == null)
             {
                 return HttpNotFound();
             }
-            return View(startup);
+            return View(aceleradora);
         }
 
-        // POST: Startup/Edit/5
+        // POST: Aceleradora/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,nome,email,msa,BizSparkID,ConsumoMes,ConsumoAcumulado,ConsumoPago")] Startup startup)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,nome")] Aceleradora aceleradora)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(startup).State = EntityState.Modified;
+                db.Entry(aceleradora).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(startup);
+            return View(aceleradora);
         }
 
-        // GET: Startup/Delete/5
+        // GET: Aceleradora/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Startup startup = await db.Startup.FindAsync(id);
-            if (startup == null)
+            Aceleradora aceleradora = await db.Aceleradora.FindAsync(id);
+            if (aceleradora == null)
             {
                 return HttpNotFound();
             }
-            return View(startup);
+            return View(aceleradora);
         }
 
-        // POST: Startup/Delete/5
+        // POST: Aceleradora/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            Startup startup = await db.Startup.FindAsync(id);
-            db.Startup.Remove(startup);
+            Aceleradora aceleradora = await db.Aceleradora.FindAsync(id);
+            db.Aceleradora.Remove(aceleradora);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

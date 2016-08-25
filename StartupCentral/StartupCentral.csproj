@@ -202,6 +202,7 @@
     <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\EndereçoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StartupController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">

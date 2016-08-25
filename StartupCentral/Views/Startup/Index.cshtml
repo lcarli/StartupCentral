@@ -1,0 +1,70 @@
+﻿@model IEnumerable<StartupCentral.Models.Startup>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutGL.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.msa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BizSparkID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumoMes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumoAcumulado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumoPago)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.msa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BizSparkID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumoMes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumoAcumulado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumoPago)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

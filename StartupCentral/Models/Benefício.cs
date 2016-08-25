@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace StartupCentral.Models
 {
     public class Benefício
-    {
+    {     
+        [Key]
         public Guid ID { get; set; }
-
+        [Required]
         public string nome { get; set; }
-    }
-
-    public class BenefícioDBContext : DbContext
-    {
-        public DbSet<Benefício> Benefício { get; set; }
     }
 }

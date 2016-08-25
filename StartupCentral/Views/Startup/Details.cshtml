@@ -1,0 +1,75 @@
+﻿@model StartupCentral.Models.Startup
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutGL.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Startup</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.msa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.msa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BizSparkID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BizSparkID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumoMes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumoMes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumoAcumulado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumoAcumulado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumoPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumoPago)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -21,6 +21,9 @@
         <th>
             @Html.DisplayNameFor(model => model.email)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoDoContato)
+        </th>
         <th></th>
     </tr>
 
@@ -34,6 +37,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDoContato)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

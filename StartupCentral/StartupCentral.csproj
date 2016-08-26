@@ -202,19 +202,27 @@
     <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\EndereçoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StartupController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608252109192_InitialCreate.cs" />
+    <Compile Include="Migrations\201608252109192_InitialCreate.Designer.cs">
+      <DependentUpon>201608252109192_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608261950420_InitialMigration.cs" />
+    <Compile Include="Migrations\201608261950420_InitialMigration.Designer.cs">
+      <DependentUpon>201608261950420_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
-    <Compile Include="Models\AceleradoraController.cs" />
+    <Compile Include="Controllers\AceleradoraController.cs" />
     <Compile Include="Models\Benefício.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Endereço.cs" />
     <Compile Include="Models\Startupbs.cs" />
-    <Compile Include="Models\StartupbsController.cs" />
+    <Compile Include="Controllers\StartupbsController.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4497,11 +4505,6 @@
     <Content Include="Views\Benefício\Details.cshtml" />
     <Content Include="Views\Benefício\Edit.cshtml" />
     <Content Include="Views\Benefício\Index.cshtml" />
-    <Content Include="Views\Contatoes\Create.cshtml" />
-    <Content Include="Views\Contatoes\Delete.cshtml" />
-    <Content Include="Views\Contatoes\Details.cshtml" />
-    <Content Include="Views\Contatoes\Edit.cshtml" />
-    <Content Include="Views\Contatoes\Index.cshtml" />
     <Content Include="Views\Endereço\Create.cshtml" />
     <Content Include="Views\Endereço\Delete.cshtml" />
     <Content Include="Views\Endereço\Details.cshtml" />
@@ -4527,6 +4530,11 @@
     <Content Include="Views\Startupbs\Details.cshtml" />
     <Content Include="Views\Startupbs\Edit.cshtml" />
     <Content Include="Views\Startupbs\Index.cshtml" />
+    <Content Include="Views\Contato\Create.cshtml" />
+    <Content Include="Views\Contato\Delete.cshtml" />
+    <Content Include="Views\Contato\Details.cshtml" />
+    <Content Include="Views\Contato\Edit.cshtml" />
+    <Content Include="Views\Contato\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4550,6 +4558,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201608252109192_InitialCreate.resx">
+      <DependentUpon>201608252109192_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608261950420_InitialMigration.resx">
+      <DependentUpon>201608261950420_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

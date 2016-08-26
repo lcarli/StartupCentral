@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StartupCentral.Models
 {
+    [Table("Aceleradora")]
     public class Aceleradora
     {
         [Required]
@@ -16,9 +17,9 @@ namespace StartupCentral.Models
         [Key]
         public Guid ID { get; set; }
         public virtual Endereço Endereço { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Benefício não pode ser branco.")]
         public virtual Benefício Benefício { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Contato não pode ser branco.")]
         public ICollection<Contato> Contatos { get; set; }
         public ICollection<Startupbs> Startups { get; set; }
     }

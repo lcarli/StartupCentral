@@ -11,6 +11,7 @@ using StartupCentral.Models;
 
 namespace StartupCentral.Controllers
 {
+    [Authorize]
     public class StatusController : Controller
     {
         private StartupDBContext db = new StartupDBContext();

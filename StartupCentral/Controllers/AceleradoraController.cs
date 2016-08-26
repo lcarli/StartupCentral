@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace StartupCentral.Models
 {
+    [Authorize]
     public class AceleradoraController : Controller
     {
         private StartupDBContext db = new StartupDBContext();

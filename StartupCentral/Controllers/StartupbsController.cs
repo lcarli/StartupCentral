@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using StartupCentral.Models;
 
-namespace StartupCentral.Controllers
+namespace StartupCentral.Models
 {
-    public class StartupController : Controller
+    [Authorize]
+    public class StartupbsController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
 
-        // GET: Startup
+        // GET: Startupbs
         public async Task<ActionResult> Index()
         {
             return View(await db.Startup.ToListAsync());
         }
 
-        // GET: Startup/Details/5
+        // GET: Startupbs/Details/5
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -36,17 +36,17 @@ namespace StartupCentral.Controllers
             return View(startupbs);
         }
 
-        // GET: Startup/Create
+        // GET: Startupbs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Startup/Create
+        // POST: Startupbs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ID,nome,email,msa,BizSparkID,ConsumoMes,ConsumoAcumulado,ConsumoPago")] Startupbs startupbs)
         {
             if (ModelState.IsValid)
@@ -60,7 +60,7 @@ namespace StartupCentral.Controllers
             return View(startupbs);
         }
 
-        // GET: Startup/Edit/5
+        // GET: Startupbs/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -75,7 +75,7 @@ namespace StartupCentral.Controllers
             return View(startupbs);
         }
 
-        // POST: Startup/Edit/5
+        // POST: Startupbs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -91,7 +91,7 @@ namespace StartupCentral.Controllers
             return View(startupbs);
         }
 
-        // GET: Startup/Delete/5
+        // GET: Startupbs/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -106,7 +106,7 @@ namespace StartupCentral.Controllers
             return View(startupbs);
         }
 
-        // POST: Startup/Delete/5
+        // POST: Startupbs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)

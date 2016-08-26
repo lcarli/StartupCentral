@@ -4,21 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StartupCentral.Models
 {
+    [Table("Startupbs")]
     public class Startupbs
     {
         [Key]
         public Guid ID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Nome não pode ser branco.")]
         public string nome { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Email não pode ser branco.")]
         public string email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Microsoft Account não pode ser branco.")]
         public string msa { get; set; }
         public string BizSparkID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Contato não pode ser branco.")]
         public ICollection<Contato> contatos { get; set; }
         public virtual Benefício benefício { get; set; }
         public virtual Aceleradora Aceleradora { get; set; }

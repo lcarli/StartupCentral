@@ -4,45 +4,47 @@
 }
 
 <div class="">
+    <!--WIDGETS-->
     <div class="row top_tiles">
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-                <div class="count">179</div>
-                <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
-            </div>
-        </div>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="tile-stats">
-                <div class="icon"><i class="fa fa-comments-o"></i></div>
-                <div class="count">179</div>
-                <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
-            </div>
-        </div>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="tile-stats">
-                <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
-                <div class="count">179</div>
-                <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
-            </div>
-        </div>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="tile-stats">
                 <div class="icon"><i class="fa fa-check-square-o"></i></div>
-                <div class="count">179</div>
-                <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
+                <div class="count">@ViewBag.NumNews</div>
+                <h3>Novas inscrições</h3>
+                <p>Quantidade de novas solicitações</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-paper-plane"></i></div>
+                <div class="count">@ViewBag.NumStartupsBS</div>
+                <h3>BizSpark</h3>
+                <p>Quantidade de startups</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-rocket"></i></div>
+                <div class="count">@ViewBag.NumStartupsBSPlus</div>
+                <h3>BizSpark Plus</h3>
+                <p>Quantidade de startups</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-usd"></i></div>
+                <div class="count">@ViewBag.ConsumoTotal</div>
+                <h3>Consumo total</h3>
+                <p>Consumo total acumulado</p>
             </div>
         </div>
     </div>
+    <!--GRAFICO CENTRAL PRINCIPAL DE CONSUMO-->
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Transaction Summary <small>Weekly progress</small></h2>
+                    <h2>Consumo Cumulativo Anual <small>Progresso Semanal</small></h2>
                     <div class="filter">
                         <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -583,16 +585,32 @@
                     max: chartMaxDate
                 }
             };
-            var plot = $.plot($("#placeholder33x"), [{
-                label: "Email Sent",
-                data: d1,
-                lines: {
-                    fillColor: "rgba(150, 202, 89, 0.12)"
-                }, //#96CA59 rgba(150, 202, 89, 0.42)
-                points: {
-                    fillColor: "#fff"
-                }
-            }], options);
+
+            $(function () {
+                $.getJSON('../../Home/JsonValues', function (data) {
+                    $.plot($("#placeholder33x"), [{
+                        label: "Consumo em Dólar USD",
+                        data: data,
+                        lines: {
+                            fillColor: "rgba(0, 255, 0, 0.12)"
+                        }, //#96CA59 rgba(150, 202, 89, 0.42)
+                        points: {
+                            fillColor: "#fff"
+                        }
+                    }], options);
+                });
+            });
+
+            //var plot = $.plot($("#placeholder33x"), [{
+            //    label: "Consumo em Dólar USD",
+            //    data: d1,
+            //    lines: {
+            //        fillColor: "rgba(0, 255, 0, 0.12)"
+            //    }, //#96CA59 rgba(150, 202, 89, 0.42)
+            //    points: {
+            //        fillColor: "#fff"
+            //    }
+            //}], options);
         });
     </script>
     <!-- /Flot -->

@@ -11,7 +11,6 @@ using StartupCentral.Models;
 
 namespace StartupCentral.Controllers
 {
-    [Authorize]
     public class UserController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
@@ -48,7 +47,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,nome,alias")] User user)
+        public async Task<ActionResult> Create([Bind(Include = "ID,nome,email")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +80,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,nome,alias")] User user)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,nome,email")] User user)
         {
             if (ModelState.IsValid)
             {

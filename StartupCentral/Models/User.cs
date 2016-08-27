@@ -15,7 +15,6 @@ namespace StartupCentral.Models
         public Guid ID { get; set; }
         [Required(ErrorMessage = "Nome não pode ser branco.")]
         public string nome { get; set; }
-        [Required(ErrorMessage = "Alias não pode ser branco.")]
-        public string alias { get; set; }
+        public string email { get; set; }
     }
 }

@@ -39,5 +39,6 @@ namespace StartupCentral.Models
         public DbSet<Endereço> Endereço { get; set; }
         public DbSet<Contato> Contato { get; set; }
         public DbSet<Benefício> Benefício { get; set; }
+        public DbSet<LogLogin> LogLogin { get; set; }
     }
 }

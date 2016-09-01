@@ -14,17 +14,17 @@ namespace StartupCentral.Models
         [Key]
         public Guid ID { get; set; }
         [Required(ErrorMessage = "Nome não pode ser branco.")]
-        public string nome { get; set; }
+        public string Nome { get; set; }
         [Required(ErrorMessage = "Email não pode ser branco.")]
-        public string email { get; set; }
+        public string Email { get; set; }
         [Required(ErrorMessage = "Microsoft Account não pode ser branco.")]
-        public string msa { get; set; }
+        public string MicrosoftAccount { get; set; }
         public string BizSparkID { get; set; }
         [Required(ErrorMessage = "Contato não pode ser branco.")]
-        public ICollection<Contato> contatos { get; set; }
-        public virtual Benefício benefício { get; set; }
+        public ICollection<Contato> Contatos { get; set; }
+        public virtual Benefício Benefício { get; set; }
         public virtual Aceleradora Aceleradora { get; set; }
-        public virtual Status status { get; set; }
+        public virtual Status Status { get; set; }
         public double ConsumoMes { get; set; }
         public double ConsumoAcumulado { get; set; }
         public double ConsumoPago { get; set; }

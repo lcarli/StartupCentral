@@ -198,10 +198,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AceleradoraController.cs" />
     <Compile Include="Controllers\BenefícioController.cs" />
     <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\EndereçoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StartupbsController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,15 +225,17 @@
     <Compile Include="Migrations\201608270020458_Change2.Designer.cs">
       <DependentUpon>201608270020458_Change2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609012305134_NewData.cs" />
+    <Compile Include="Migrations\201609012305134_NewData.Designer.cs">
+      <DependentUpon>201609012305134_NewData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
-    <Compile Include="Controllers\AceleradoraController.cs" />
     <Compile Include="Models\Benefício.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Endereço.cs" />
     <Compile Include="Models\LogLogin.cs" />
     <Compile Include="Models\Startupbs.cs" />
-    <Compile Include="Controllers\StartupbsController.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4509,11 +4513,26 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\Form.cshtml" />
     <Content Include="Views\Home\FormAdvanced.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Aceleradora\Create.cshtml" />
+    <Content Include="Views\Aceleradora\Delete.cshtml" />
+    <Content Include="Views\Aceleradora\Details.cshtml" />
+    <Content Include="Views\Aceleradora\Edit.cshtml" />
+    <Content Include="Views\Aceleradora\Index.cshtml" />
     <Content Include="Views\Benefício\Create.cshtml" />
     <Content Include="Views\Benefício\Delete.cshtml" />
     <Content Include="Views\Benefício\Details.cshtml" />
     <Content Include="Views\Benefício\Edit.cshtml" />
     <Content Include="Views\Benefício\Index.cshtml" />
+    <Content Include="Views\Contato\Create.cshtml" />
+    <Content Include="Views\Contato\Delete.cshtml" />
+    <Content Include="Views\Contato\Details.cshtml" />
+    <Content Include="Views\Contato\Edit.cshtml" />
+    <Content Include="Views\Contato\Index.cshtml" />
     <Content Include="Views\Endereço\Create.cshtml" />
     <Content Include="Views\Endereço\Delete.cshtml" />
     <Content Include="Views\Endereço\Details.cshtml" />
@@ -4524,26 +4543,11 @@
     <Content Include="Views\Status\Details.cshtml" />
     <Content Include="Views\Status\Edit.cshtml" />
     <Content Include="Views\Status\Index.cshtml" />
-    <Content Include="Views\Aceleradora\Create.cshtml" />
-    <Content Include="Views\Aceleradora\Delete.cshtml" />
-    <Content Include="Views\Aceleradora\Details.cshtml" />
-    <Content Include="Views\Aceleradora\Edit.cshtml" />
-    <Content Include="Views\Aceleradora\Index.cshtml" />
     <Content Include="Views\Startupbs\Create.cshtml" />
     <Content Include="Views\Startupbs\Delete.cshtml" />
     <Content Include="Views\Startupbs\Details.cshtml" />
     <Content Include="Views\Startupbs\Edit.cshtml" />
     <Content Include="Views\Startupbs\Index.cshtml" />
-    <Content Include="Views\Contato\Create.cshtml" />
-    <Content Include="Views\Contato\Delete.cshtml" />
-    <Content Include="Views\Contato\Details.cshtml" />
-    <Content Include="Views\Contato\Edit.cshtml" />
-    <Content Include="Views\Contato\Index.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4580,6 +4584,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608270020458_Change2.resx">
       <DependentUpon>201608270020458_Change2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609012305134_NewData.resx">
+      <DependentUpon>201609012305134_NewData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

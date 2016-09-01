@@ -35,6 +35,7 @@ namespace StartupCentral.Controllers
             countStartupsBSPlus();
             countStartupsNews();
             SumConsumoTotal();
+            GetTopProfiles();
 
             return View();
         }
@@ -76,9 +77,18 @@ namespace StartupCentral.Controllers
         {
             Random randNums = new Random();
             var randNum = randNums.Next(10, 20);
+            var ts = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            var result = String.Format("{0} milliseconds since 1970/01/01", ts.TotalMilliseconds);
+            //Criar o data para o gráfico, aqui
             return Json(
-                new[] { new[] { new DateTime().Day, randNum } },
+                new[] { new[] { ts.TotalMilliseconds, randNum } },
                 JsonRequestBehavior.AllowGet);
+        }
+
+        public void GetTopProfiles()
+        {
+            ViewBag.Top1 = "Portal Telemedicina";
+            ViewBag.ConsumoTotalTop1 = "$4.500";
         }
     }
 }

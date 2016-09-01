@@ -14,13 +14,13 @@ namespace StartupCentral.Models
         [Key]
         public Guid ID { get; set; }
         [Required(ErrorMessage = "Rua não pode ser branco.")]
-        public string rua { get; set; }
-        public string numero { get; set; }
-        public string complemento { get; set; }
-        public string cep { get; set; }
-        public string estado { get; set; }
+        public string Rua { get; set; }
+        public string Numero { get; set; }
+        public string Complemento { get; set; }
+        public string CEP { get; set; }
+        public string Estado { get; set; }
         [Required(ErrorMessage = "País não pode ser branco.")]
-        public string país { get; set; }
+        public string País { get; set; }
 
     }
 }

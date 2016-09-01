@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using StartupCentral.Models;
 
-namespace StartupCentral.Models
+namespace StartupCentral.Controllers
 {
-    [Authorize]
     public class AceleradoraController : Controller
     {
         private StartupDBContext db = new StartupDBContext();

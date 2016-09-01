@@ -27,6 +27,23 @@ namespace StartupCentral.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Benefício.AddOrUpdate( p => p.Nome,
+                new Models.Benefício { ID = Guid.NewGuid(), Nome = "BizSpark" },
+                new Models.Benefício { ID = Guid.NewGuid(), Nome = "BizSpark PLUS" },
+                new Models.Benefício { ID = Guid.NewGuid(), Nome = "BizSpark Sponsorship" }
+                );
+
+            context.Status.AddOrUpdate(p => p.Nome,
+                new Models.Status { ID = Guid.NewGuid(), Nome = "Não Inscrito"},
+                new Models.Status { ID = Guid.NewGuid(), Nome = "Aguardando BizSpark" },
+                new Models.Status { ID = Guid.NewGuid(), Nome = "Aguardando BizSpark PLUS" },
+                new Models.Status { ID = Guid.NewGuid(), Nome = "BizSpark" },
+                new Models.Status { ID = Guid.NewGuid(), Nome = "Azure BizSpark" },
+                new Models.Status { ID = Guid.NewGuid(), Nome = "Azure BizSpark PLUS" },
+                new Models.Status { ID = Guid.NewGuid(), Nome = "WIN" },
+                new Models.Status { ID = Guid.NewGuid(), Nome = "BizSpark PLUS" }
+                );
         }
     }
 }

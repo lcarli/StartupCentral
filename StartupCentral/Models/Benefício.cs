@@ -14,6 +14,6 @@ namespace StartupCentral.Models
         [Key]
         public Guid ID { get; set; }
         [Required(ErrorMessage = "Nome não pode ser branco.")]
-        public string nome { get; set; }
+        public string Nome { get; set; }
     }
 }

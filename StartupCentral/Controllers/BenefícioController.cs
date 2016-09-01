@@ -11,7 +11,6 @@ using StartupCentral.Models;
 
 namespace StartupCentral.Controllers
 {
-    [Authorize]
     public class BenefícioController : Controller
     {
         private StartupDBContext db = new StartupDBContext();

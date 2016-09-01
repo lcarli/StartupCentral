@@ -14,13 +14,13 @@ namespace StartupCentral.Models
         [Key]
         public Guid ID { get; set; }
         [Required]
-        public string nome { get; set; }
-        public string telefone { get; set; }
+        public string Nome { get; set; }
+        public string Telefone { get; set; }
         [Required(ErrorMessage = "Email não pode ser branco.")]
-        public string email { get; set; }
+        public string Email { get; set; }
         public string TipoDoContato { get; set; }
-        public ICollection<Aceleradora> aceleradora { get; set; }
-        public ICollection<Startupbs> startup { get; set; }
+        public ICollection<Aceleradora> Aceleradora { get; set; }
+        public ICollection<Startupbs> Startup { get; set; }
 
     }
 }

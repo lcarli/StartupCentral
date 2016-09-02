@@ -39,6 +39,31 @@ namespace StartupCentral.Controllers
         // GET: Startupbs/Create
         public ActionResult Create()
         {
+            var query = from b in db.Benefício
+                        select b;
+
+            var BList = new SelectList(query, "ID", "Nome");
+            List<SelectListItem> sl = new List<SelectListItem>();
+            foreach (var item in BList.Items)
+            {
+                var i = item as Benefício;
+                sl.Add(new SelectListItem { Text = i.Nome, Value = i.ID.ToString() });
+            }
+            ViewBag.BeneficioList = sl;
+
+            //preenchendo Status
+            var query2 = from s in db.Status
+                         select s;
+
+            var SList = new SelectList(query2, "ID", "Nome");
+            List<SelectListItem> sl2 = new List<SelectListItem>();
+            foreach (var item in SList.Items)
+            {
+                var i = item as Status;
+                sl2.Add(new SelectListItem { Text = i.Nome, Value = i.ID.ToString() });
+            }
+            ViewBag.StatusList = sl2;
+
             return View();
         }
 
@@ -47,8 +72,35 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,nome,email,msa,BizSparkID,ConsumoMes,ConsumoAcumulado,ConsumoPago")] Startupbs startupbs)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nome,Email,MicrosoftAccount,BizSparkID,Benefício,Observação,Status,Contatos,ConsumoMes,ConsumoAcumulado,ConsumoPago")] Startupbs startupbs)
         {
+            //preenchendo Beneficio
+            var query = from b in db.Benefício
+                        select b;
+
+            var BList = new SelectList(query, "ID", "Nome");
+            List<SelectListItem> sl = new List<SelectListItem>();
+            foreach (var item in BList.Items)
+            {
+                var i = item as Benefício;
+                sl.Add(new SelectListItem { Text = i.Nome, Value = i.ID.ToString() });
+            }
+            ViewBag.BeneficioList = sl;
+
+            //preenchendo Status
+            var query2 = from s in db.Status
+                         select s;
+
+            var SList = new SelectList(query2, "ID", "Nome");
+            List<SelectListItem> sl2 = new List<SelectListItem>();
+            foreach (var item in SList.Items)
+            {
+                var i = item as Status;
+                sl2.Add(new SelectListItem { Text = i.Nome, Value = i.ID.ToString() });
+            }
+            ViewBag.StatusList = sl2;
+           startupbs.Benefício = (from t in db.Benefício where t.ID.ToString() == ModelState["Benefício"].Value.AttemptedValue select t).First();
+
             if (ModelState.IsValid)
             {
                 startupbs.ID = Guid.NewGuid();
@@ -80,7 +132,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,nome,email,msa,BizSparkID,ConsumoMes,ConsumoAcumulado,ConsumoPago")] Startupbs startupbs)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Nome,Email,MicrosoftAccount,BizSparkID,ConsumoMes,ConsumoAcumulado,ConsumoPago")] Startupbs startupbs)
         {
             if (ModelState.IsValid)
             {

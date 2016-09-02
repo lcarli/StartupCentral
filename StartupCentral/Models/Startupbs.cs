@@ -5,29 +5,35 @@ using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace StartupCentral.Models
 {
-    [Table("Startupbs")]
+    //[Table("Startupbs")]
     public class Startupbs
     {
         [Key]
         public Guid ID { get; set; }
-        [Required(ErrorMessage = "Nome não pode ser branco.")]
+        [Required(ErrorMessage = "Nome não pode ser branco."), Display(Name = "Nome*")]
         public string Nome { get; set; }
-        [Required(ErrorMessage = "Email não pode ser branco.")]
+        [Required(ErrorMessage = "Email não pode ser branco."), Display(Name = "Email*")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Microsoft Account não pode ser branco.")]
+        [Required(ErrorMessage = "Microsoft Account não pode ser branco."), Display(Name = "Microsoft Account*")]
         public string MicrosoftAccount { get; set; }
+        [Display(Name = "BizSpark ID")]
         public string BizSparkID { get; set; }
-        [Required(ErrorMessage = "Contato não pode ser branco.")]
         public ICollection<Contato> Contatos { get; set; }
         public virtual Benefício Benefício { get; set; }
         public virtual Aceleradora Aceleradora { get; set; }
         public virtual Status Status { get; set; }
+        [Display(Name = "Consumo do Mês")]
         public double ConsumoMes { get; set; }
+        [Display(Name = "Consumo Acumulado do Ano")]
         public double ConsumoAcumulado { get; set; }
+        [Display(Name = "Consumo Pago")]
         public double ConsumoPago { get; set; }
+        public string Observações { get; set; }
     }
 
     public class StartupDBContext : DbContext

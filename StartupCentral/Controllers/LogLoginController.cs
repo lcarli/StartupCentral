@@ -11,108 +11,108 @@ using StartupCentral.Models;
 
 namespace StartupCentral.Controllers
 {
-    public class EndereçoController : Controller
+    public class LogLoginController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
 
-        // GET: Endereço
+        // GET: LogLogin
         public async Task<ActionResult> Index()
         {
-            return View(await db.Endereço.ToListAsync());
+            return View(await db.LogLogin.ToListAsync());
         }
 
-        // GET: Endereço/Details/5
+        // GET: LogLogin/Details/5
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Endereço endereço = await db.Endereço.FindAsync(id);
-            if (endereço == null)
+            LogLogin logLogin = await db.LogLogin.FindAsync(id);
+            if (logLogin == null)
             {
                 return HttpNotFound();
             }
-            return View(endereço);
+            return View(logLogin);
         }
 
-        // GET: Endereço/Create
+        // GET: LogLogin/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Endereço/Create
+        // POST: LogLogin/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Rua,Numero,Complemento,CEP,Estado,País")] Endereço endereço)
+        public async Task<ActionResult> Create([Bind(Include = "ID,datetime")] LogLogin logLogin)
         {
             if (ModelState.IsValid)
             {
-                endereço.ID = Guid.NewGuid();
-                db.Endereço.Add(endereço);
+                logLogin.ID = Guid.NewGuid();
+                db.LogLogin.Add(logLogin);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(endereço);
+            return View(logLogin);
         }
 
-        // GET: Endereço/Edit/5
+        // GET: LogLogin/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Endereço endereço = await db.Endereço.FindAsync(id);
-            if (endereço == null)
+            LogLogin logLogin = await db.LogLogin.FindAsync(id);
+            if (logLogin == null)
             {
                 return HttpNotFound();
             }
-            return View(endereço);
+            return View(logLogin);
         }
 
-        // POST: Endereço/Edit/5
+        // POST: LogLogin/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Rua,Numero,Complemento,CEP,Estado,País")] Endereço endereço)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,datetime")] LogLogin logLogin)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(endereço).State = EntityState.Modified;
+                db.Entry(logLogin).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(endereço);
+            return View(logLogin);
         }
 
-        // GET: Endereço/Delete/5
+        // GET: LogLogin/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Endereço endereço = await db.Endereço.FindAsync(id);
-            if (endereço == null)
+            LogLogin logLogin = await db.LogLogin.FindAsync(id);
+            if (logLogin == null)
             {
                 return HttpNotFound();
             }
-            return View(endereço);
+            return View(logLogin);
         }
 
-        // POST: Endereço/Delete/5
+        // POST: LogLogin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            Endereço endereço = await db.Endereço.FindAsync(id);
-            db.Endereço.Remove(endereço);
+            LogLogin logLogin = await db.LogLogin.FindAsync(id);
+            db.LogLogin.Remove(logLogin);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -17,6 +17,7 @@ namespace StartupCentral.Models
         public string Rua { get; set; }
         public string Numero { get; set; }
         public string Complemento { get; set; }
+        [DataType(DataType.PostalCode)]
         public string CEP { get; set; }
         public string Estado { get; set; }
         [Required(ErrorMessage = "País não pode ser branco.")]

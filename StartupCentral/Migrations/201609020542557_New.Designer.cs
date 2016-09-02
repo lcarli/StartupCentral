@@ -7,13 +7,13 @@ namespace StartupCentral.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Change2 : IMigrationMetadata
+    public sealed partial class New : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Change2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(New));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608270020458_Change2"; }
+            get { return "201609020542557_New"; }
         }
         
         string IMigrationMetadata.Source

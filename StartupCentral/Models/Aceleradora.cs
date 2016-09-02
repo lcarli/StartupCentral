@@ -20,7 +20,7 @@ namespace StartupCentral.Models
         [Required(ErrorMessage = "Benefício não pode ser branco.")]
         public virtual Benefício Benefício { get; set; }
         [Required(ErrorMessage = "Contato não pode ser branco.")]
-        public ICollection<Contato> Contatos { get; set; }
-        public ICollection<Startupbs> Startups { get; set; }
+        public virtual ICollection<Contato> Contatos { get; set; }
+        public virtual ICollection<Startupbs> Startups { get; set; }
     }
 }

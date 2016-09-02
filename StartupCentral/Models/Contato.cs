@@ -15,12 +15,14 @@ namespace StartupCentral.Models
         public Guid ID { get; set; }
         [Required]
         public string Nome { get; set; }
+        [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
         [Required(ErrorMessage = "Email não pode ser branco.")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string TipoDoContato { get; set; }
-        public ICollection<Aceleradora> Aceleradora { get; set; }
-        public ICollection<Startupbs> Startup { get; set; }
+        public virtual ICollection<Aceleradora> Aceleradora { get; set; }
+        public virtual ICollection<Startupbs> Startup { get; set; }
 
     }
 }

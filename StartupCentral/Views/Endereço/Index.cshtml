@@ -13,22 +13,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.rua)
+            @Html.DisplayNameFor(model => model.Rua)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.numero)
+            @Html.DisplayNameFor(model => model.Numero)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.complemento)
+            @Html.DisplayNameFor(model => model.Complemento)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cep)
+            @Html.DisplayNameFor(model => model.CEP)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.estado)
+            @Html.DisplayNameFor(model => model.Estado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.país)
+            @Html.DisplayNameFor(model => model.País)
         </th>
         <th></th>
     </tr>
@@ -36,22 +36,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.rua)
+            @Html.DisplayFor(modelItem => item.Rua)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.numero)
+            @Html.DisplayFor(modelItem => item.Numero)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.complemento)
+            @Html.DisplayFor(modelItem => item.Complemento)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.cep)
+            @Html.DisplayFor(modelItem => item.CEP)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.estado)
+            @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.país)
+            @Html.DisplayFor(modelItem => item.País)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

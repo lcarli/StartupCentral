@@ -47,7 +47,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,nome")] Benefício benefício)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nome")] Benefício benefício)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,nome")] Benefício benefício)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Nome")] Benefício benefício)
         {
             if (ModelState.IsValid)
             {

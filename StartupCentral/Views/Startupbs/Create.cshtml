@@ -50,7 +50,7 @@
                                     <span class="step_no">3</span>
                                     <span class="step_descr">
                                         Passo 3<br />
-                                        <small>Observações</small>
+                                        <small>Owner</small>
                                     </span>
                                 </a>
                             </li>
@@ -101,7 +101,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(model => model.Status, (ViewBag.StatusList as List<SelectListItem>), new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.Status, (ViewBag.StatusList as IEnumerable<SelectListItem>), new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -141,8 +141,15 @@
                                             HtmlFieldPrefix = "Contatos"
                                         }
                                     })
-                         </div>
+                        </div>
                         <div id="step-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Owner, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Owner, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Observações, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -157,10 +164,10 @@
                 </div>
             </div>
             @*<div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>*@
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>*@
         </div>
     </div>
 }
@@ -183,7 +190,7 @@
       });
     </script>
     <script src="~/Content/vendors/autosize/dist/autosize.min.js"></script>
-     <!-- Autosize -->
+    <!-- Autosize -->
     <script>
           $(document).ready(function() {
             autosize($('.resizable_textarea'));

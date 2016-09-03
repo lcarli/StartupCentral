@@ -34,6 +34,7 @@ namespace StartupCentral.Models
         [Display(Name = "Consumo Pago")]
         public double ConsumoPago { get; set; }
         public string Observações { get; set; }
+        public string Owner { get; set; }
     }
 
     public class StartupDBContext : DbContext
@@ -46,5 +47,12 @@ namespace StartupCentral.Models
         public DbSet<Contato> Contato { get; set; }
         public DbSet<Benefício> Benefício { get; set; }
         public DbSet<LogLogin> LogLogin { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            base.OnModelCreating(modelBuilder);
+    }
     }
 }

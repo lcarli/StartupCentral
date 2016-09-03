@@ -10,6 +10,7 @@ namespace StartupCentral.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "StartupCentral.Models.StartupDBContext";
         }
 
         protected override void Seed(StartupCentral.Models.StartupDBContext context)
@@ -34,7 +35,7 @@ namespace StartupCentral.Migrations
                 );
 
             context.Status.AddOrUpdate(p => p.Nome,
-                new Models.Status { ID = Guid.NewGuid(), Nome = "Não Inscrito"},
+                new Models.Status { ID = Guid.NewGuid(), Nome = "Não Inscrito" },
                 new Models.Status { ID = Guid.NewGuid(), Nome = "WIN" },
                 new Models.Status { ID = Guid.NewGuid(), Nome = "BizSpark" },
                 new Models.Status { ID = Guid.NewGuid(), Nome = "BizSpark PLUS" },

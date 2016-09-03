@@ -21,8 +21,7 @@ namespace StartupCentral.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string TipoDoContato { get; set; }
-        public virtual ICollection<Aceleradora> Aceleradora { get; set; }
         public virtual ICollection<Startupbs> Startup { get; set; }
-
+        public virtual ICollection<Aceleradora> Aceleradora { get; set; }
     }
 }

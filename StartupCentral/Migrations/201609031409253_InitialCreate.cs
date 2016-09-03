@@ -3,7 +3,7 @@ namespace StartupCentral.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class New : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -17,7 +17,7 @@ namespace StartupCentral.Migrations
                         Endereço_ID = c.Guid(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Benefício", t => t.Benefício_ID, cascadeDelete: true)
+                .ForeignKey("dbo.Benefício", t => t.Benefício_ID)
                 .ForeignKey("dbo.Endereço", t => t.Endereço_ID)
                 .Index(t => t.Benefício_ID)
                 .Index(t => t.Endereço_ID);
@@ -56,6 +56,7 @@ namespace StartupCentral.Migrations
                         ConsumoAcumulado = c.Double(nullable: false),
                         ConsumoPago = c.Double(nullable: false),
                         Observações = c.String(),
+                        Owner = c.String(),
                         Aceleradora_ID = c.Guid(),
                         Benefício_ID = c.Guid(),
                         Status_ID = c.Guid(),
@@ -121,8 +122,8 @@ namespace StartupCentral.Migrations
                         Aceleradora_ID = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => new { t.Contato_ID, t.Aceleradora_ID })
-                .ForeignKey("dbo.Contato", t => t.Contato_ID, cascadeDelete: true)
-                .ForeignKey("dbo.Aceleradora", t => t.Aceleradora_ID, cascadeDelete: true)
+                .ForeignKey("dbo.Contato", t => t.Contato_ID)
+                .ForeignKey("dbo.Aceleradora", t => t.Aceleradora_ID)
                 .Index(t => t.Contato_ID)
                 .Index(t => t.Aceleradora_ID);
             
@@ -134,8 +135,8 @@ namespace StartupCentral.Migrations
                         Contato_ID = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => new { t.Startupbs_ID, t.Contato_ID })
-                .ForeignKey("dbo.Startupbs", t => t.Startupbs_ID, cascadeDelete: true)
-                .ForeignKey("dbo.Contato", t => t.Contato_ID, cascadeDelete: true)
+                .ForeignKey("dbo.Startupbs", t => t.Startupbs_ID)
+                .ForeignKey("dbo.Contato", t => t.Contato_ID)
                 .Index(t => t.Startupbs_ID)
                 .Index(t => t.Contato_ID);
             

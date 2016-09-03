@@ -210,9 +210,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609020542557_New.cs" />
-    <Compile Include="Migrations\201609020542557_New.Designer.cs">
-      <DependentUpon>201609020542557_New.cs</DependentUpon>
+    <Compile Include="Migrations\201609031409253_InitialCreate.cs" />
+    <Compile Include="Migrations\201609031409253_InitialCreate.Designer.cs">
+      <DependentUpon>201609031409253_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609031412350_NewInit.cs" />
+    <Compile Include="Migrations\201609031412350_NewInit.Designer.cs">
+      <DependentUpon>201609031412350_NewInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
@@ -4508,11 +4512,6 @@
     <Content Include="Views\Status\Details.cshtml" />
     <Content Include="Views\Status\Edit.cshtml" />
     <Content Include="Views\Status\Index.cshtml" />
-    <Content Include="Views\Contato\Create.cshtml" />
-    <Content Include="Views\Contato\Delete.cshtml" />
-    <Content Include="Views\Contato\Details.cshtml" />
-    <Content Include="Views\Contato\Edit.cshtml" />
-    <Content Include="Views\Contato\Index.cshtml" />
     <Content Include="Views\Endereço\Create.cshtml" />
     <Content Include="Views\Endereço\Delete.cshtml" />
     <Content Include="Views\Endereço\Details.cshtml" />
@@ -4539,6 +4538,11 @@
     <Content Include="Views\Startupbs\Details.cshtml" />
     <Content Include="Views\Startupbs\Edit.cshtml" />
     <Content Include="Views\Startupbs\Index.cshtml" />
+    <Content Include="Views\Contato\Create.cshtml" />
+    <Content Include="Views\Contato\Delete.cshtml" />
+    <Content Include="Views\Contato\Details.cshtml" />
+    <Content Include="Views\Contato\Edit.cshtml" />
+    <Content Include="Views\Contato\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4564,8 +4568,11 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609020542557_New.resx">
-      <DependentUpon>201609020542557_New.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609031409253_InitialCreate.resx">
+      <DependentUpon>201609031409253_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609031412350_NewInit.resx">
+      <DependentUpon>201609031412350_NewInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

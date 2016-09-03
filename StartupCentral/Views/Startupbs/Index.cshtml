@@ -29,6 +29,7 @@
                             <th class="column-title">Email </th>
                             <th class="column-title">Microsoft Account </th>
                             <th class="column-title">BizSpark ID </th>
+                            <th class="column-title">Aceleradora </th>
                             <th class="column-title">Benefício </th>
                             <th class="column-title">Status </th>
                             <th class="column-title">Consumo Mês </th>
@@ -57,6 +58,7 @@
                                     <td class=" ">@Html.DisplayFor(modelItem => item.Email)</td>
                                     <td class=" ">@Html.DisplayFor(modelItem => item.MicrosoftAccount)</td>
                                     <td class=" ">@Html.DisplayFor(modelItem => item.BizSparkID)</td>
+                                    <td class=" ">@Html.DisplayFor(modelItem => item.Aceleradora.nome)</td>
                                     <td class=" ">@Html.DisplayFor(modelItem => item.Benefício.Nome)</td>
                                     <td class=" ">@Html.DisplayFor(modelItem => item.Status.Nome)</td>
                                     <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoMes)</td>

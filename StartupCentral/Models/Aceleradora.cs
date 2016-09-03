@@ -17,10 +17,9 @@ namespace StartupCentral.Models
         [Key]
         public Guid ID { get; set; }
         public virtual Endereço Endereço { get; set; }
-        [Required(ErrorMessage = "Benefício não pode ser branco.")]
         public virtual Benefício Benefício { get; set; }
-        [Required(ErrorMessage = "Contato não pode ser branco.")]
         public virtual ICollection<Contato> Contatos { get; set; }
         public virtual ICollection<Startupbs> Startups { get; set; }
+        public string Observacoes { get; set; }
     }
 }

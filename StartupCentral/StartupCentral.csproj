@@ -218,6 +218,14 @@
     <Compile Include="Migrations\201609031412350_NewInit.Designer.cs">
       <DependentUpon>201609031412350_NewInit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609031816085_AceNotRequired.cs" />
+    <Compile Include="Migrations\201609031816085_AceNotRequired.Designer.cs">
+      <DependentUpon>201609031816085_AceNotRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609031931292_AddOBSAce.cs" />
+    <Compile Include="Migrations\201609031931292_AddOBSAce.Designer.cs">
+      <DependentUpon>201609031931292_AddOBSAce.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
     <Compile Include="Models\Benefício.cs" />
@@ -4543,6 +4551,7 @@
     <Content Include="Views\Contato\Details.cshtml" />
     <Content Include="Views\Contato\Edit.cshtml" />
     <Content Include="Views\Contato\Index.cshtml" />
+    <Content Include="Views\Shared\EnderecoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4573,6 +4582,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609031412350_NewInit.resx">
       <DependentUpon>201609031412350_NewInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609031816085_AceNotRequired.resx">
+      <DependentUpon>201609031816085_AceNotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609031931292_AddOBSAce.resx">
+      <DependentUpon>201609031931292_AddOBSAce.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

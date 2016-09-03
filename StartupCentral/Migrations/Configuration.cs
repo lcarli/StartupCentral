@@ -44,6 +44,10 @@ namespace StartupCentral.Migrations
                 new Models.Status { ID = Guid.NewGuid(), Nome = "Azure BS" },
                 new Models.Status { ID = Guid.NewGuid(), Nome = "Azure BS+" }
                 );
+
+            context.Aceleradora.AddOrUpdate(p => p.nome,
+                new Models.Aceleradora { ID = Guid.NewGuid(), nome = "Nenhuma"}
+                );
         }
     }
 }

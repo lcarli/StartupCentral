@@ -40,6 +40,7 @@ namespace StartupCentral.Controllers
         // GET: Startupbs/Create
         public ActionResult Create()
         {
+            //preenchendo Beneficio
             var query = from b in db.Benefício
                         select b;
             ViewBag.BeneficioList = new SelectList(query, "ID", "Nome");
@@ -49,6 +50,12 @@ namespace StartupCentral.Controllers
                          select s;
 
             ViewBag.StatusList = new SelectList(query2, "ID", "Nome");
+
+            //preenchendo Aceleradora
+            var query3 = from a in db.Aceleradora
+                         select a;
+
+            ViewBag.AceleradoraList = new SelectList(query3, "ID", "Nome");
 
             return View();
         }
@@ -64,6 +71,8 @@ namespace StartupCentral.Controllers
             startupbs.Benefício = (from b in db.Benefício where b.ID == i select b).FirstOrDefault();
             Guid ii = new Guid(ModelState["Status"].Value.AttemptedValue);
             startupbs.Status = (from s in db.Status where s.ID == ii select s).FirstOrDefault();
+            Guid iii = new Guid(ModelState["Aceleradora"].Value.AttemptedValue);
+            startupbs.Aceleradora = (from a in db.Aceleradora where a.ID == iii select a).FirstOrDefault();
             if (CustomValidateModel(startupbs))
             {
                 startupbs.ID = Guid.NewGuid();
@@ -99,6 +108,9 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.BeneficioList = new SelectList(db.Benefício, "ID", "Nome",startupbs.Benefício.ID);
+            ViewBag.StatusList = new SelectList(db.Status, "ID", "Nome", startupbs.Status.ID);
+            ViewBag.AceleradoraList = new SelectList(db.Aceleradora, "ID", "nome", startupbs.Aceleradora.ID);
             return View(startupbs);
         }
 
@@ -109,10 +121,12 @@ namespace StartupCentral.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Startupbs startupbs)
         {
-            Guid i = new Guid(ModelState["Benefício"].Value.AttemptedValue);
+            Guid i = new Guid(ModelState["Benefício.ID"].Value.AttemptedValue);
             startupbs.Benefício = (from b in db.Benefício where b.ID == i select b).FirstOrDefault();
-            Guid ii = new Guid(ModelState["Status"].Value.AttemptedValue);
+            Guid ii = new Guid(ModelState["Status.ID"].Value.AttemptedValue);
             startupbs.Status = (from s in db.Status where s.ID == ii select s).FirstOrDefault();
+            Guid iii = new Guid(ModelState["Aceleradora.ID"].Value.AttemptedValue);
+            startupbs.Aceleradora = (from a in db.Aceleradora where a.ID == iii select a).FirstOrDefault();
             if (CustomValidateModel(startupbs))
             {
                 db.Entry(startupbs).State = EntityState.Modified;

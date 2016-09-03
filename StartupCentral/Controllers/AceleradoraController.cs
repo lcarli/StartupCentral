@@ -39,6 +39,9 @@ namespace StartupCentral.Controllers
         // GET: Aceleradora/Create
         public ActionResult Create()
         {
+            var query = from b in db.Benefício
+                        select b;
+            ViewBag.BeneficioList = new SelectList(query, "ID", "Nome");
             return View();
         }
 
@@ -47,9 +50,12 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,nome")] Aceleradora aceleradora)
+        public async Task<ActionResult> Create(Aceleradora aceleradora)
         {
-            if (ModelState.IsValid)
+            Guid i = new Guid(ModelState["Benefício"].Value.AttemptedValue);
+            aceleradora.Benefício = (from b in db.Benefício where b.ID == i select b).FirstOrDefault();
+
+            if (CustomValidateModel(aceleradora))
             {
                 aceleradora.ID = Guid.NewGuid();
                 db.Aceleradora.Add(aceleradora);
@@ -58,6 +64,18 @@ namespace StartupCentral.Controllers
             }
 
             return View(aceleradora);
+        }
+
+        private bool CustomValidateModel(Aceleradora a)
+        {
+            if (a.nome == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         // GET: Aceleradora/Edit/5
@@ -72,6 +90,7 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.BeneficioList = new SelectList(db.Benefício, "ID", "Nome", aceleradora.Benefício.ID);
             return View(aceleradora);
         }
 
@@ -82,6 +101,8 @@ namespace StartupCentral.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,nome")] Aceleradora aceleradora)
         {
+            Guid i = new Guid(ModelState["Benefício"].Value.AttemptedValue);
+            aceleradora.Benefício = (from b in db.Benefício where b.ID == i select b).FirstOrDefault();
             if (ModelState.IsValid)
             {
                 db.Entry(aceleradora).State = EntityState.Modified;

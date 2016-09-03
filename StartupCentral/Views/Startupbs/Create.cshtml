@@ -91,6 +91,14 @@
                                 </div>
 
                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.Aceleradora, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.Aceleradora, (ViewBag.AceleradoraList as IEnumerable<SelectListItem>), new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Aceleradora, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     @Html.LabelFor(model => model.Benefício, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.DropDownListFor(model => model.Benefício, (ViewBag.BeneficioList as IEnumerable<SelectListItem>), new { @class = "form-control" })

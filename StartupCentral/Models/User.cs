@@ -12,9 +12,11 @@ namespace StartupCentral.Models
     public class User
     {
         [Key]
-        public Guid ID { get; set; }
+        public int UserId { get; set; }
+
         [Required(ErrorMessage = "Nome não pode ser branco.")]
         public string nome { get; set; }
+
         public string email { get; set; }
     }
 }

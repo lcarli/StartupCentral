@@ -12,14 +12,30 @@ namespace StartupCentral.Models
     [Table("Aceleradora")]
     public class Aceleradora
     {
-        [Required]
-        public string nome { get; set; }
+        public Aceleradora()
+        {
+            this.Startups = new List<Startupbs>();
+            this.Contatos = new HashSet<Contato>();
+        }
+
+        [Required(ErrorMessage = "Nome não pode ser branco.")]
+        public string Nome { get; set; }
+
         [Key]
-        public Guid ID { get; set; }
-        public virtual Endereço Endereço { get; set; }
-        public virtual Benefício Benefício { get; set; }
+        public int AceleradoraId { get; set; }
+
+        public int EnderecoId { get; set; }
+
+        public virtual Endereço Endereco { get; set; }
+
+        public int BeneficioId { get; set; }
+
+        public virtual Benefício Beneficio { get; set; }
+
         public virtual ICollection<Contato> Contatos { get; set; }
+
         public virtual ICollection<Startupbs> Startups { get; set; }
+
         public string Observacoes { get; set; }
     }
 }

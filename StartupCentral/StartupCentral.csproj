@@ -198,33 +198,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AceleradoraController.cs" />
-    <Compile Include="Controllers\BenefícioController.cs" />
-    <Compile Include="Controllers\ContatoController.cs" />
-    <Compile Include="Controllers\EndereçoController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LogLoginController.cs" />
-    <Compile Include="Controllers\StartupbsController.cs" />
-    <Compile Include="Controllers\StatusController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609031409253_InitialCreate.cs" />
-    <Compile Include="Migrations\201609031409253_InitialCreate.Designer.cs">
-      <DependentUpon>201609031409253_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609031412350_NewInit.cs" />
-    <Compile Include="Migrations\201609031412350_NewInit.Designer.cs">
-      <DependentUpon>201609031412350_NewInit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609031816085_AceNotRequired.cs" />
-    <Compile Include="Migrations\201609031816085_AceNotRequired.Designer.cs">
-      <DependentUpon>201609031816085_AceNotRequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609031931292_AddOBSAce.cs" />
-    <Compile Include="Migrations\201609031931292_AddOBSAce.Designer.cs">
-      <DependentUpon>201609031931292_AddOBSAce.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
@@ -4515,42 +4490,7 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Status\Create.cshtml" />
-    <Content Include="Views\Status\Delete.cshtml" />
-    <Content Include="Views\Status\Details.cshtml" />
-    <Content Include="Views\Status\Edit.cshtml" />
-    <Content Include="Views\Status\Index.cshtml" />
-    <Content Include="Views\Endereço\Create.cshtml" />
-    <Content Include="Views\Endereço\Delete.cshtml" />
-    <Content Include="Views\Endereço\Details.cshtml" />
-    <Content Include="Views\Endereço\Edit.cshtml" />
-    <Content Include="Views\Endereço\Index.cshtml" />
-    <Content Include="Views\LogLogin\Create.cshtml" />
-    <Content Include="Views\LogLogin\Delete.cshtml" />
-    <Content Include="Views\LogLogin\Details.cshtml" />
-    <Content Include="Views\LogLogin\Edit.cshtml" />
-    <Content Include="Views\LogLogin\Index.cshtml" />
     <Content Include="Views\Shared\ContatoPartial.cshtml" />
-    <Content Include="Views\Aceleradora\Create.cshtml" />
-    <Content Include="Views\Aceleradora\Delete.cshtml" />
-    <Content Include="Views\Aceleradora\Details.cshtml" />
-    <Content Include="Views\Aceleradora\Edit.cshtml" />
-    <Content Include="Views\Aceleradora\Index.cshtml" />
-    <Content Include="Views\Benefício\Create.cshtml" />
-    <Content Include="Views\Benefício\Delete.cshtml" />
-    <Content Include="Views\Benefício\Details.cshtml" />
-    <Content Include="Views\Benefício\Edit.cshtml" />
-    <Content Include="Views\Benefício\Index.cshtml" />
-    <Content Include="Views\Startupbs\Create.cshtml" />
-    <Content Include="Views\Startupbs\Delete.cshtml" />
-    <Content Include="Views\Startupbs\Details.cshtml" />
-    <Content Include="Views\Startupbs\Edit.cshtml" />
-    <Content Include="Views\Startupbs\Index.cshtml" />
-    <Content Include="Views\Contato\Create.cshtml" />
-    <Content Include="Views\Contato\Delete.cshtml" />
-    <Content Include="Views\Contato\Details.cshtml" />
-    <Content Include="Views\Contato\Edit.cshtml" />
-    <Content Include="Views\Contato\Index.cshtml" />
     <Content Include="Views\Shared\EnderecoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -4575,20 +4515,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609031409253_InitialCreate.resx">
-      <DependentUpon>201609031409253_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609031412350_NewInit.resx">
-      <DependentUpon>201609031412350_NewInit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609031816085_AceNotRequired.resx">
-      <DependentUpon>201609031816085_AceNotRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609031931292_AddOBSAce.resx">
-      <DependentUpon>201609031931292_AddOBSAce.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

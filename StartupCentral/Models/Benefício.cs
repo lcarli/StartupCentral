@@ -8,11 +8,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StartupCentral.Models
 {
-    [Table("Benefício")]
+    [Table("Beneficio")]
     public class Benefício
     {     
         [Key]
-        public Guid ID { get; set; }
+        public int BeneficioId { get; set; }
+
         [Required(ErrorMessage = "Nome não pode ser branco.")]
         public string Nome { get; set; }
     }

@@ -2,7 +2,6 @@
 
 @for (int i = 0; i < Model.Count; i++)
 {
-        @Html.HiddenFor(model => model[i].ID, htmlAttributes: new { Value = Guid.NewGuid()})
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model[i].Nome, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -29,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model[i].TipoDoContato, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model[i].TipoDoContato,"Tipo do Contato", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model[i].TipoDoContato, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model[i].TipoDoContato, "", new { @class = "text-danger" })

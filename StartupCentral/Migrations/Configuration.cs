@@ -36,9 +36,9 @@ namespace StartupCentral.Migrations
                 new Status { StatusId = 8, Nome = "Azure BS+" }
                 );
 
-            //context.Aceleradora.AddOrUpdate(p => p.Nome,
-            //    new Aceleradora { AceleradoraId = 1, Nome = "Nenhuma", Beneficio = listBeneficios.Where(n => n.Nome == "BizSpark PLUS").SingleOrDefault(), BeneficioId = listBeneficios.Where(n => n.BeneficioId == 2).SingleOrDefault().BeneficioId }
-            //    );
+            context.Aceleradora.AddOrUpdate(p => p.Nome,
+                new Aceleradora {Nome = "Nenhuma", BeneficioId = listBeneficios.Where(n => n.BeneficioId == 2).SingleOrDefault().BeneficioId}
+                );
         }
     }
 }

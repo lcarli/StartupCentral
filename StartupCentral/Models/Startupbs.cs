@@ -36,27 +36,30 @@ namespace StartupCentral.Models
 
         public virtual ICollection<Contato> Contatos { get; set; }
 
+        [Display(Name = "Benefício")]
         public int BeneficioId { get; set; }
 
         public virtual Beneficio Beneficio { get; set; }
 
+        [Display(Name = "Aceleradora")]
         public int AceleradoraId { get; set; }
 
         public virtual Aceleradora Aceleradora { get; set; }
 
+        [Display(Name = "Status")]
         public int StatusId { get; set; }
 
         public virtual Status Status { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0,c}")]
+
         [Display(Name = "Consumo do Mês")]
         public double ConsumoMes { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0,c}")]
+
         [Display(Name = "Consumo Acumulado do Ano")]
         public double ConsumoAcumulado { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0,c}")]
+        //[DisplayFormat(DataFormatString = "{0,c}")]
         [Display(Name = "Consumo Pago")]
         public double ConsumoPago { get; set; }
 

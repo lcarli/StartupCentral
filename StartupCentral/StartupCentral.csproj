@@ -202,6 +202,7 @@
     <Compile Include="Controllers\BeneficioController.cs" />
     <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\EnderecoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogLoginController.cs" />
     <Compile Include="Controllers\StartupbsController.cs" />
     <Compile Include="Controllers\StatusController.cs" />

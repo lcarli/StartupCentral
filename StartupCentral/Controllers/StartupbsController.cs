@@ -18,7 +18,7 @@ namespace StartupCentral.Controllers
         // GET: Startupbs
         public async Task<ActionResult> Index()
         {
-            var startup = db.Startup.Include(s => s.Aceleradora).Include(s => s.Beneficio).Include(s => s.Status);
+            var startup = db.Startup.Include(s => s.Aceleradora).Include(s => s.Beneficio).Include(s => s.Status).Include(s=>s.Contatos);
             return View(await startup.ToListAsync());
         }
 
@@ -51,7 +51,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "StartupbsId,Nome,Email,MicrosoftAccount,BizSparkID,BeneficioId,AceleradoraId,StatusId,ConsumoMes,ConsumoAcumulado,ConsumoPago,Observacoes,Owner")] Startupbs startupbs)
+        public async Task<ActionResult> Create([Bind(Include = "StartupbsId,Nome,Email,MicrosoftAccount,Contatos,BizSparkID,BeneficioId,AceleradoraId,StatusId,ConsumoMes,ConsumoAcumulado,ConsumoPago,Observacoes,Owner")] Startupbs startupbs)
         {
             if (ModelState.IsValid)
             {
@@ -69,6 +69,7 @@ namespace StartupCentral.Controllers
         // GET: Startupbs/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            List<Contato> lc = (from c in db.Contato where c.Startup.Any(s => s.StartupbsId == id) select c).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -78,6 +79,7 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
+            startupbs.Contatos = lc;
             ViewBag.AceleradoraId = new SelectList(db.Aceleradora, "AceleradoraId", "Nome", startupbs.AceleradoraId);
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", startupbs.BeneficioId);
             ViewBag.StatusId = new SelectList(db.Status, "StatusId", "Nome", startupbs.StatusId);

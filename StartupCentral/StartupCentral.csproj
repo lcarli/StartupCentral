@@ -4541,6 +4541,7 @@
     <Content Include="Views\Status\Edit.cshtml" />
     <Content Include="Views\Status\Index.cshtml" />
     <Content Include="Views\Shared\ContatoDetailsPartial.cshtml" />
+    <Content Include="Views\Shared\EnderecoDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

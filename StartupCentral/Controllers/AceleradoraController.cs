@@ -18,18 +18,20 @@ namespace StartupCentral.Controllers
         // GET: Aceleradora
         public async Task<ActionResult> Index()
         {
-            var aceleradora = db.Aceleradora.Include(a => a.Beneficio);
+            var aceleradora = db.Aceleradora.Include(a => a.Beneficio).Include(a=>a.Endereco).Include(a=>a.Contatos).Include(a=>a.Startups);
             return View(await aceleradora.ToListAsync());
         }
 
         // GET: Aceleradora/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            List<Contato> lc = (from c in db.Contato where c.Startup.Any(s => s.StartupbsId == id) select c).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Aceleradora aceleradora = await db.Aceleradora.FindAsync(id);
+            aceleradora.Contatos = lc;
             if (aceleradora == null)
             {
                 return HttpNotFound();
@@ -49,7 +51,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AceleradoraId,Nome,BeneficioId,Observacoes")] Aceleradora aceleradora)
+        public async Task<ActionResult> Create([Bind(Include = "AceleradoraId,Nome,BeneficioId,Observacoes,Endereco,Contatos")] Aceleradora aceleradora)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +67,13 @@ namespace StartupCentral.Controllers
         // GET: Aceleradora/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            List<Contato> lc = (from c in db.Contato where c.Startup.Any(s => s.StartupbsId == id) select c).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Aceleradora aceleradora = await db.Aceleradora.FindAsync(id);
+            aceleradora.Contatos = lc;
             if (aceleradora == null)
             {
                 return HttpNotFound();
@@ -83,7 +87,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "AceleradoraId,Nome,BeneficioId,Observacoes")] Aceleradora aceleradora)
+        public async Task<ActionResult> Edit([Bind(Include = "AceleradoraId,Nome,BeneficioId,Observacoes,Endereco,Contatos")] Aceleradora aceleradora)
         {
             if (ModelState.IsValid)
             {

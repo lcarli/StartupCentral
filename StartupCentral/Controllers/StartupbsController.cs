@@ -93,7 +93,7 @@ namespace StartupCentral.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "StartupbsId,Nome,Email,MicrosoftAccount,BizSparkID,BeneficioId,AceleradoraId,StatusId,ConsumoMes,ConsumoAcumulado,ConsumoPago,Observacoes,Owner")] Startupbs startupbs)
+        public async Task<ActionResult> Edit([Bind(Include = "StartupbsId,Nome,Email,MicrosoftAccount,BizSparkID,BeneficioId,Contatos,AceleradoraId,StatusId,ConsumoMes,ConsumoAcumulado,ConsumoPago,Observacoes,Owner")] Startupbs startupbs)
         {
             if (ModelState.IsValid)
             {

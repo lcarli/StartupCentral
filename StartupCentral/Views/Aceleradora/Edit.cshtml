@@ -1,49 +1,120 @@
 ﻿@model StartupCentral.Models.Aceleradora
+@using StartupCentral.Models
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutGL.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Editar Aceleradora</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Aceleradora</h4>
+        <h4>Startup</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.AceleradoraId)
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Aceleradora Wizard <small>Editar Aceleradora</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <!-- Smart Wizard -->
+                    <p>Edite aqui a Aceleradora.</p>
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                        <ul class="wizard_steps">
+                            <li>
+                                <a href="#step-1">
+                                    <span class="step_no">1</span>
+                                    <span class="step_descr">
+                                        Passo 1<br />
+                                        <small>Dados da Aceleradora</small>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-2">
+                                    <span class="step_no">2</span>
+                                    <span class="step_descr">
+                                        Passo 2<br />
+                                        <small>Endereço da Aceleradora</small>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-3">
+                                    <span class="step_no">2</span>
+                                    <span class="step_descr">
+                                        Passo 2<br />
+                                        <small>Contatos da Aceleradora</small>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-4">
+                                    <span class="step_no">3</span>
+                                    <span class="step_descr">
+                                        Passo 3<br />
+                                        <small>Obsevação</small>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="step-1">
+                            <form class="form-horizontal form-label-left">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BeneficioId, "BeneficioId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("BeneficioId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BeneficioId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Observacoes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Observacoes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Observacoes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BeneficioId, "Benefício", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("BeneficioId", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BeneficioId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="step-2">
+                            @Html.Partial("~/Views/Shared/EnderecoPartial.cshtml", Model.Endereco,
+                                    new ViewDataDictionary(ViewData)
+                                    {
+                                        TemplateInfo = new TemplateInfo
+                                        {
+                                            HtmlFieldPrefix = "Endereco"
+                                        }
+                                    })
+                        </div>
+                        <div id="step-3">
+                            @Html.Partial("~/Views/Shared/ContatoPartial.cshtml", Model.Contatos,
+                                    new ViewDataDictionary(ViewData)
+                                    {
+                                        TemplateInfo = new TemplateInfo
+                                        {
+                                            HtmlFieldPrefix = "Contatos"
+                                        }
+                                    })
+                        </div>
+                        <div id="step-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Observacoes, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.Observacoes, htmlAttributes: new { @class = "resizable_textarea form-control", @placeholder = "Digite aqui observações, principalmente se a Startup está sendo adicionada como exceção" })
+                                    @Html.ValidationMessageFor(model => model.Observacoes, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End SmartWizard Content -->
+                </div>
             </div>
         </div>
     </div>
@@ -52,3 +123,27 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#wizard').smartWizard();
+
+        $('.buttonNext').addClass('btn btn-success');
+        $('.buttonPrevious').addClass('btn btn-primary');
+        $('.buttonFinish').addClass('btn btn-default');
+      });
+    </script>
+    <script src="~/Content/vendors/autosize/dist/autosize.min.js"></script>
+    <!-- Autosize -->
+    <script>
+          $(document).ready(function() {
+            autosize($('.resizable_textarea'));
+          });
+    </script>
+    <!-- /Autosize -->
+    <!-- /jQuery Smart Wizard -->
+}

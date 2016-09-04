@@ -76,11 +76,14 @@
                                     {
                                         <td class=" ">@Html.DisplayFor(modelItem => c.Nome)</td>
                                     }*@
-                                    <td class=" last">
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.AceleradoraId }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.AceleradoraId }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.AceleradoraId })
-                                    </td>
+                                    @if (item.Nome != "Nenhuma")
+                                    {
+                                        <td class=" last">
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.AceleradoraId }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.AceleradoraId }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.AceleradoraId })
+                                        </td>
+                                    }
                                 </tr>
                             }
                         }

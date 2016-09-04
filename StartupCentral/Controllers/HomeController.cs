@@ -56,21 +56,33 @@ namespace StartupCentral.Controllers
 
         public void countStartupsBS()
         {
-            ViewBag.NumStartupsBS = "235";
+            var v1 = (from s in db.Startup where s.Beneficio.Nome == "BizSpark PLUS" select s).ToList().Count();
+            var v2 = (from s in db.Startup where s.Beneficio.Nome == "BizSpark PLUS" select s).ToList().Count();
+            var value = v1 + v2;
+            ViewBag.NumStartupsBS = value;
         }
 
         public void countStartupsBSPlus()
         {
-            @ViewBag.NumStartupsBSPlus = "18";
+            var value = (from s in db.Startup where s.Beneficio.Nome == "BizSpark" select s).ToList().Count();
+            @ViewBag.NumStartupsBSPlus = value;
         }
 
         public void countStartupsNews()
         {
-            @ViewBag.NumNews = "20";
+            var value = (from s in db.Startup where s.Status.Nome == "Não Inscrito" select s).ToList().Count();
+
+            @ViewBag.NumNews = value;
         }
         public void SumConsumoTotal()
         {
-            @ViewBag.ConsumoTotal = "$20.000";
+            var v = (from s in db.Startup select s).ToList();
+            double value = 0.0;
+            foreach (var item in v)
+            {
+                value = value + item.ConsumoAcumulado;
+            }
+            @ViewBag.ConsumoTotal = $"${value}";
         }
 
         public ActionResult JsonValues()
@@ -87,8 +99,26 @@ namespace StartupCentral.Controllers
 
         public void GetTopProfiles()
         {
-            ViewBag.Top1 = "Portal Telemedicina";
-            ViewBag.ConsumoTotalTop1 = "$4.500";
+            var v = (from s in db.Startup orderby s.ConsumoAcumulado descending select s).ToList();
+            if (v.Count() > 4)
+            {
+                ViewBag.Top1 = v[0].Nome;
+                ViewBag.ConsumoTotalTop1 = $"${v[0].ConsumoAcumulado}";
+                ViewBag.Top2 = v[1].Nome;
+                ViewBag.ConsumoTotalTop2 = $"${v[1].ConsumoAcumulado}";
+                ViewBag.Top3 = v[2].Nome;
+                ViewBag.ConsumoTotalTop3 = $"${v[2].ConsumoAcumulado}";
+                ViewBag.Top4 = v[3].Nome;
+                ViewBag.ConsumoTotalTop4 = $"${v[3].ConsumoAcumulado}";
+                ViewBag.Top5 = v[4].Nome;
+                ViewBag.ConsumoTotalTop5 = $"${v[4].ConsumoAcumulado}";
+            }
+            else if (v.Count() > 0)
+            {
+                ViewBag.Top1 = v[0].Nome;
+                ViewBag.ConsumoTotalTop1 = $"${v[0].ConsumoAcumulado}";
+            }
+            else { }
         }
     }
 }

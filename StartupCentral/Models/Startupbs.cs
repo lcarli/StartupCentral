@@ -38,7 +38,7 @@ namespace StartupCentral.Models
 
         public int BeneficioId { get; set; }
 
-        public virtual Benefício Beneficio { get; set; }
+        public virtual Beneficio Beneficio { get; set; }
 
         public int AceleradoraId { get; set; }
 
@@ -71,9 +71,9 @@ namespace StartupCentral.Models
         public DbSet<Aceleradora> Aceleradora { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<Endereço> Endereço { get; set; }
+        public DbSet<Endereco> Endereço { get; set; }
         public DbSet<Contato> Contato { get; set; }
-        public DbSet<Benefício> Benefício { get; set; }
+        public DbSet<Beneficio> Benefício { get; set; }
         public DbSet<LogLogin> LogLogin { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

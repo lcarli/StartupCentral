@@ -1,11 +1,11 @@
 namespace StartupCentral.Migrations
 {
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using StartupCentral.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<StartupCentral.Models.StartupDBContext>
     {
@@ -16,24 +16,11 @@ namespace StartupCentral.Migrations
 
         protected override void Seed(StartupCentral.Models.StartupDBContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
-            var listBeneficios = new List<Benefício>
+            var listBeneficios = new List<Beneficio>
             {
-                new Benefício { BeneficioId = 1, Nome = "BizSpark" },
-                new Benefício { BeneficioId = 2, Nome = "BizSpark PLUS" },
-                new Benefício { BeneficioId = 3, Nome = "BizSpark Sponsorship" }
+                new Beneficio { BeneficioId = 1, Nome = "BizSpark" },
+                new Beneficio { BeneficioId = 2, Nome = "BizSpark PLUS" },
+                new Beneficio { BeneficioId = 3, Nome = "BizSpark Sponsorship" }
             };
             listBeneficios.ForEach(s => context.Benefício.AddOrUpdate(p => p.Nome, s));
             context.SaveChanges();
@@ -49,9 +36,9 @@ namespace StartupCentral.Migrations
                 new Status { StatusId = 8, Nome = "Azure BS+" }
                 );
 
-            context.Aceleradora.AddOrUpdate(p => p.Nome,
-                new Aceleradora { AceleradoraId = 1, Nome = "Nenhuma", Beneficio = listBeneficios.Where(n => n.Nome == "BizSpark PLUS").SingleOrDefault() }
-                );
+            //context.Aceleradora.AddOrUpdate(p => p.Nome,
+            //    new Aceleradora { AceleradoraId = 1, Nome = "Nenhuma", Beneficio = listBeneficios.Where(n => n.Nome == "BizSpark PLUS").SingleOrDefault(), BeneficioId = listBeneficios.Where(n => n.BeneficioId == 2).SingleOrDefault().BeneficioId }
+            //    );
         }
     }
 }

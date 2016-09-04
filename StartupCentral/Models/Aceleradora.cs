@@ -24,13 +24,12 @@ namespace StartupCentral.Models
         [Key]
         public int AceleradoraId { get; set; }
 
-        public int EnderecoId { get; set; }
 
-        public virtual Endereço Endereco { get; set; }
+        public virtual Endereco Endereco { get; set; }
 
         public int BeneficioId { get; set; }
 
-        public virtual Benefício Beneficio { get; set; }
+        public virtual Beneficio Beneficio { get; set; }
 
         public virtual ICollection<Contato> Contatos { get; set; }
 

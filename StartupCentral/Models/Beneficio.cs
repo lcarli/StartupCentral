@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace StartupCentral.Models
 {
     [Table("Beneficio")]
-    public class Benefício
+    public class Beneficio
     {     
         [Key]
         public int BeneficioId { get; set; }

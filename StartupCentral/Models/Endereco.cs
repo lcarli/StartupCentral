@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace StartupCentral.Models
 {
     [Table("Endereco")]
-    public class Endereço
+    public class Endereco
     {
         [Key]
         public int EnderecoId { get; set; }
@@ -29,7 +29,7 @@ namespace StartupCentral.Models
 
         [StringLength(2, ErrorMessage = "País deve conter apenas 2 letras. EX: BR", MinimumLength = 2)]
         [Required(ErrorMessage = "País não pode ser branco.")]
-        public string País { get; set; }
+        public string Pais { get; set; }
         
     }
 }

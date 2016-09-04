@@ -198,14 +198,26 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AceleradoraController.cs" />
+    <Compile Include="Controllers\BeneficioController.cs" />
+    <Compile Include="Controllers\ContatoController.cs" />
+    <Compile Include="Controllers\EnderecoController.cs" />
+    <Compile Include="Controllers\LogLoginController.cs" />
+    <Compile Include="Controllers\StartupbsController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609040031175_NewTest.cs" />
+    <Compile Include="Migrations\201609040031175_NewTest.Designer.cs">
+      <DependentUpon>201609040031175_NewTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
-    <Compile Include="Models\Benefício.cs" />
+    <Compile Include="Models\Beneficio.cs" />
     <Compile Include="Models\Contato.cs" />
-    <Compile Include="Models\Endereço.cs" />
+    <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\LogLogin.cs" />
     <Compile Include="Models\Startupbs.cs" />
     <Compile Include="Models\Status.cs" />
@@ -4492,6 +4504,41 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\ContatoPartial.cshtml" />
     <Content Include="Views\Shared\EnderecoPartial.cshtml" />
+    <Content Include="Views\Aceleradora\Create.cshtml" />
+    <Content Include="Views\Aceleradora\Delete.cshtml" />
+    <Content Include="Views\Aceleradora\Details.cshtml" />
+    <Content Include="Views\Aceleradora\Edit.cshtml" />
+    <Content Include="Views\Aceleradora\Index.cshtml" />
+    <Content Include="Views\Beneficio\Create.cshtml" />
+    <Content Include="Views\Beneficio\Delete.cshtml" />
+    <Content Include="Views\Beneficio\Details.cshtml" />
+    <Content Include="Views\Beneficio\Edit.cshtml" />
+    <Content Include="Views\Beneficio\Index.cshtml" />
+    <Content Include="Views\Contato\Create.cshtml" />
+    <Content Include="Views\Contato\Delete.cshtml" />
+    <Content Include="Views\Contato\Details.cshtml" />
+    <Content Include="Views\Contato\Edit.cshtml" />
+    <Content Include="Views\Contato\Index.cshtml" />
+    <Content Include="Views\Endereco\Create.cshtml" />
+    <Content Include="Views\Endereco\Delete.cshtml" />
+    <Content Include="Views\Endereco\Details.cshtml" />
+    <Content Include="Views\Endereco\Edit.cshtml" />
+    <Content Include="Views\Endereco\Index.cshtml" />
+    <Content Include="Views\LogLogin\Create.cshtml" />
+    <Content Include="Views\LogLogin\Delete.cshtml" />
+    <Content Include="Views\LogLogin\Details.cshtml" />
+    <Content Include="Views\LogLogin\Edit.cshtml" />
+    <Content Include="Views\LogLogin\Index.cshtml" />
+    <Content Include="Views\Startupbs\Create.cshtml" />
+    <Content Include="Views\Startupbs\Delete.cshtml" />
+    <Content Include="Views\Startupbs\Details.cshtml" />
+    <Content Include="Views\Startupbs\Edit.cshtml" />
+    <Content Include="Views\Startupbs\Index.cshtml" />
+    <Content Include="Views\Status\Create.cshtml" />
+    <Content Include="Views\Status\Delete.cshtml" />
+    <Content Include="Views\Status\Details.cshtml" />
+    <Content Include="Views\Status\Edit.cshtml" />
+    <Content Include="Views\Status\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4515,6 +4562,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201609040031175_NewTest.resx">
+      <DependentUpon>201609040031175_NewTest.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -120,7 +120,14 @@
                             </dl>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                            @*colocar o form de contatos aqui*@
+                            @Html.Partial("~/Views/Shared/ContatoPartial.cshtml", Model.Contatos,
+                                    new ViewDataDictionary(ViewData)
+                                    {
+                                        TemplateInfo = new TemplateInfo
+                                        {
+                                            HtmlFieldPrefix = "Contatos"
+                                        }
+                                    })
                         </div>
                     </div>
                 </div>

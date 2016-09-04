@@ -25,11 +25,13 @@ namespace StartupCentral.Controllers
         // GET: Startupbs/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            List<Contato> lc = (from c in db.Contato where c.Startup.Any(s => s.StartupbsId == id) select c).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Startupbs startupbs = await db.Startup.FindAsync(id);
+            startupbs.Contatos = lc;
             if (startupbs == null)
             {
                 return HttpNotFound();

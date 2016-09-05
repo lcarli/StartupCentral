@@ -55,10 +55,10 @@ namespace StartupCentral.Controllers
             {
                 db.Status.Add(status);
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = status.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = status.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(status);
         }
 
@@ -88,10 +88,10 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(status).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = status.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = status.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(status);
         }
 

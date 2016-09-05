@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Infrastructure;
 
 namespace StartupCentral.Models
 {
@@ -80,13 +81,104 @@ namespace StartupCentral.Models
         public DbSet<LogLogin> LogLogin { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<GeneralLog> GeneralLogs { get; set; }
+        public DbSet<Log> logs { get; set; }
 
+        public StartupDBContext()
+        {
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<StartupDBContext>());
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            // Detecta as alterações existentes na instância corrente do DbContext.
+            this.ChangeTracker.DetectChanges();
+            // Identifica as entidades que devem gerar registros em log.
+            var entries = DetectEntries();
+            // Cria lista para armazenamento temporário dos registros em log.
+            List<Log> logs = new List<Log>(entries.Count());
+            // Varre as entidades que devem gerar registros em log.
+            foreach (var entry in entries)
+            {
+                // Cria novo registro de log.
+                Log newLog = GetLog(entry);
+
+                if (newLog != null)
+                    logs.Add(newLog);
+            }
+            // Adiciona os registros de log na fonte de dados.
+            foreach (var item in logs)
+            {
+                this.Entry(item).State = EntityState.Added;
+            }
+            // Persiste as informações na fonte de dados.
+            return base.SaveChanges();
+        }
+
+        /// <summary>
+        /// Identifica quais entidades devem ser gerar registros de log.
+        /// </summary>
+        private IEnumerable<DbEntityEntry> DetectEntries()
+        {
+            return ChangeTracker.Entries().Where(e => (e.State == EntityState.Modified ||
+                                                        e.State == EntityState.Added ||
+                                                        e.State == EntityState.Deleted) &&
+                                                        e.Entity.GetType() != typeof(Log));
+        }
+
+        /// <summary>
+        /// Cria os registros de log.
+        /// </summary>
+        private Log GetLog(DbEntityEntry entry)
+        {
+
+            Log returnValue = null;
+
+            if (entry.State == EntityState.Added)
+            {
+                returnValue = GetInsertLog(entry);
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                returnValue = GetUpdateLog(entry);
+            }
+            else if (entry.State == EntityState.Deleted)
+            {
+                returnValue = GetDeleteLog(entry);
+            }
+
+            return returnValue;
+        }
+
+        private Log GetInsertLog(DbEntityEntry entry)
+        {
+
+            return Log.CreateInsertLog(entry.Entity);
+        }
+
+        private Log GetDeleteLog(DbEntityEntry entry)
+        {
+
+            return Log.CreateDeleteLog(entry.Entity);
+        }
+
+        private Log GetUpdateLog(DbEntityEntry entry)
+        {
+
+            object originalValue = null;
+
+            if (entry.OriginalValues != null)
+                originalValue = entry.OriginalValues.ToObject();
+            else
+                originalValue = entry.GetDatabaseValues().ToObject();
+
+            return Log.CreateUpdateLog(originalValue, entry.Entity);
         }
     }
 }

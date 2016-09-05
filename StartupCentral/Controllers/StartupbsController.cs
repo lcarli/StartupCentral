@@ -61,14 +61,14 @@ namespace StartupCentral.Controllers
             {
                 db.Startup.Add(startupbs);
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = startupbs.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
             ViewBag.AceleradoraId = new SelectList(db.Aceleradora, "AceleradoraId", "Nome", startupbs.AceleradoraId);
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", startupbs.BeneficioId);
             ViewBag.StatusId = new SelectList(db.Status, "StatusId", "Nome", startupbs.StatusId);
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = startupbs.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(startupbs);
         }
 
@@ -103,13 +103,13 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(startupbs).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = startupbs.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.AceleradoraId = new SelectList(db.Aceleradora, "AceleradoraId", "Nome", startupbs.AceleradoraId);
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", startupbs.BeneficioId);
             ViewBag.StatusId = new SelectList(db.Status, "StatusId", "Nome", startupbs.StatusId);
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = startupbs.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(startupbs);
         }
 

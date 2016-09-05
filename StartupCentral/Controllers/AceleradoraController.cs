@@ -59,12 +59,12 @@ namespace StartupCentral.Controllers
             {
                 db.Aceleradora.Add(aceleradora);
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = aceleradora.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", aceleradora.BeneficioId);
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = aceleradora.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(aceleradora);
         }
 
@@ -97,11 +97,11 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(aceleradora).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = aceleradora.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", aceleradora.BeneficioId);
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = aceleradora.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(aceleradora);
         }
 

@@ -27,7 +27,7 @@
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view" src="~/Content/images/user.png" alt="Avatar" title="Change the avatar">
+                                    <img class="img-responsive avatar-view" src="~/Content/images/lucas.png" alt="Avatar" title="Change the avatar">
                                 </div>
                             </div>
                             <h3>@Html.DisplayFor(model=>model.nome)</h3>
@@ -96,7 +96,7 @@
                                         <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Atividades Recentes</a>
                                     </li>
                                     <li role="presentation" class="">
-                                        <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Descrição da Role</a>
+                                        <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Descrição da Função</a>
                                     </li>
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -106,7 +106,7 @@
                                             @foreach (var item in Model.Logs)
                                             {
                                                 <li>
-                                                    <img src=~/Content/images/user.png class="avatar" alt="Avatar">
+                                                    <img src=@ViewBag.UserImage class="avatar" alt="Avatar">
                                                     <div class="message_date">
                                                         <h3 class="date text-info">@Html.DisplayFor(modelItem => item.Datetime.Day)</h3>
                                                         @{ var m = item.Datetime.ToString("MMMM");}

@@ -55,10 +55,10 @@ namespace StartupCentral.Controllers
             {
                 db.Benefício.Add(beneficio);
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = beneficio.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = beneficio.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(beneficio);
         }
 
@@ -88,10 +88,10 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(beneficio).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = beneficio.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = beneficio.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(beneficio);
         }
 

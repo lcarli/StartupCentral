@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201609040031175_NewTest.Designer.cs">
       <DependentUpon>201609040031175_NewTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609050948595_AddedLogClass.cs" />
+    <Compile Include="Migrations\201609050948595_AddedLogClass.Designer.cs">
+      <DependentUpon>201609050948595_AddedLogClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
     <Compile Include="Models\Beneficio.cs" />
@@ -229,6 +233,7 @@
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\GeneralLog.cs" />
     <Compile Include="Controllers\GeneralLogController.cs" />
+    <Compile Include="Models\Log.cs" />
     <Compile Include="Models\LogLogin.cs" />
     <Compile Include="Models\O365Helper.cs" />
     <Compile Include="Models\Roles.cs" />
@@ -249,8 +254,12 @@
     <Content Include="Content\css\maps\jquery-jvectormap-2.0.3.css" />
     <Content Include="Content\images\american-express.png" />
     <Content Include="Content\images\cropper.jpg" />
+    <Content Include="Content\images\elisq.png" />
     <Content Include="Content\images\img.jpg" />
     <Content Include="Content\images\inbox.png" />
+    <Content Include="Content\images\jannuzzi.png" />
+    <Content Include="Content\images\lucas.png" />
+    <Content Include="Content\images\marcelo.png" />
     <Content Include="Content\images\mastercard.png" />
     <Content Include="Content\images\media.jpg" />
     <Content Include="Content\images\paypal.png" />
@@ -260,6 +269,7 @@
     <Content Include="Content\images\prod-3.jpg" />
     <Content Include="Content\images\prod-4.jpg" />
     <Content Include="Content\images\prod-5.jpg" />
+    <Content Include="Content\images\richard.png" />
     <Content Include="Content\images\user.png" />
     <Content Include="Content\images\visa.png" />
     <Content Include="Content\js\datepicker\daterangepicker.js" />
@@ -4593,6 +4603,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201609040031175_NewTest.resx">
       <DependentUpon>201609040031175_NewTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609050948595_AddedLogClass.resx">
+      <DependentUpon>201609050948595_AddedLogClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

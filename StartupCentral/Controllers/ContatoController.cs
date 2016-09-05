@@ -55,10 +55,10 @@ namespace StartupCentral.Controllers
             {
                 db.Contato.Add(contato);
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = contato.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = contato.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(contato);
         }
 
@@ -88,10 +88,10 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(contato).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = contato.Nome, UserId = HomeController.useridsession });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = contato.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
             return View(contato);
         }
 

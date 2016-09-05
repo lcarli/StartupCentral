@@ -12,16 +12,6 @@
             <div class="title_left">
                 <h3>Perfil do Usuário</h3>
             </div>
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="clearfix"></div>
@@ -64,13 +54,13 @@
                                 <li>
                                     <p>Cadastro de Startups</p>
                                     <div class="progress progress_sm">
-                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=@ViewBag.CadastroCounter></div>
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="@ViewBag.CadastroCounter"></div>
                                     </div>
                                 </li>
                                 <li>
                                     <p>Acesso ao Site</p>
                                     <div class="progress progress_sm">
-                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=@ViewBag.SiteCounter></div>
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="@ViewBag.SiteCounter"></div>
                                     </div>
                                 </li>
                                 @if (ViewBag.Owner)
@@ -78,7 +68,7 @@
                                     <li>
                                         <p>Owner</p>
                                         <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=@ViewBag.OwnerCounter></div>
+                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="@ViewBag.OwnerCounter"></div>
                                         </div>
                                     </li>
                                 }
@@ -103,10 +93,10 @@
                             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                     <li role="presentation" class="active">
-                                        <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                                        <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Atividades Recentes</a>
                                     </li>
                                     <li role="presentation" class="">
-                                        <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                                        <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Descrição da Role</a>
                                     </li>
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -116,14 +106,15 @@
                                             @foreach (var item in Model.Logs)
                                             {
                                                 <li>
-                                                    <img src=@ViewBag.ImgUser class="avatar" alt="Avatar">
+                                                    <img src=~/Content/images/user.png class="avatar" alt="Avatar">
                                                     <div class="message_date">
                                                         <h3 class="date text-info">@Html.DisplayFor(modelItem => item.Datetime.Day)</h3>
-                                                        <p class="month">@Html.DisplayFor(modelItem=>item.Datetime.Month)</p>
+                                                        @{ var m = item.Datetime.ToString("MMMM");}
+                                                        <p class="month">@m</p>
                                                     </div>
                                                     <div class="message_wrapper">
                                                         <h4 class="heading">@Html.DisplayFor(model => model.nome)</h4>
-                                                        <blockquote class="message">@Html.DisplayFor(modelItem => item.Action) a 'entidade' nesta data.</blockquote>
+                                                        <blockquote class="message">@Html.DisplayFor(modelItem => item.Action) a @Html.DisplayFor(modelItem => item.ObjectUsed) nesta data.</blockquote>
                                                         <br />
                                                     </div>
                                                 </li>
@@ -146,3 +137,12 @@
     </div>
 </div>
 <!-- /page content -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <!-- bootstrap-progressbar -->
+    <script src="~/Content/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Content/js/moment/moment.min.js"></script>
+    <script src="~/Content/js/datepicker/daterangepicker.js"></script>
+}

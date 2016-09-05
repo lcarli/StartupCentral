@@ -44,7 +44,9 @@ namespace StartupCentral.Migrations
                 new Roles { RoleId = 1, Nome = "Audience Marketing Manager", Descricao = "Responsável pela gestão da métrica, com olhar Business."},
                 new Roles { RoleId = 2, Nome = "Technical Evangelist Lead", Descricao = "Responsável pela gestão da métrica, com olhar Técnico. Além de ser o técnico responsável por algumas Startups e da gestão de relacionamentos." },
                 new Roles { RoleId = 3, Nome = "Technical Evangelist", Descricao = "Responsável pelo suporte técnico a algumas Startups." },
-                new Roles { RoleId = 4, Nome = "Intern", Descricao = "Responsável pelo suporte ao time de gestão." }
+                new Roles { RoleId = 4, Nome = "Intern", Descricao = "Responsável pelo suporte ao time de gestão." },
+                new Roles { RoleId = 5, Nome = "DX Manager", Descricao = "Responsável pela gestão da métrica, com olhar Business. Além disso, monitora o suporte técnico." },
+                new Roles { RoleId = 6, Nome = "DX Director", Descricao = "Responsável Geral." }
                 );
         }
     }

@@ -20,40 +20,36 @@ namespace StartupCentral.Controllers
         {
             //GetUser
             var cp = ClaimsPrincipal.Current.Identities.First();
-            Models.User user = new Models.User() { nome = cp.Claims.First(c => c.Type == "name").Value, email = cp.Name };
-            ViewBag.Nome = user.nome.ToString();
-            db.LogLogin.Add(new Models.LogLogin() { datetime = DateTime.Now, user = user });
-            await db.SaveChangesAsync();
-            ViewBag.UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId;
-            useridsession = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId;
-            //Edit Menu
-            //if (user.RoleId == 3 || user.RoleId == 4)
-            //{
+            //User users = new Models.User() { nome = cp.Claims.First(c => c.Type == "name").Value, email = cp.Name };
+            User user = db.User.Where(u => u.email == cp.Name).FirstOrDefault();
 
-            //}
+            //se user for null, usuario nao pode acessar.
+            if (user == null)
+            {
+                
+            }
+            else
+            {
+                ViewBag.Nome = user.nome.ToString();
+                db.LogLogin.Add(new Models.LogLogin() { datetime = DateTime.Now, user = user });
+                await db.SaveChangesAsync();
+                ViewBag.UserId = user.UserId;
+                useridsession = user.UserId;
+                //Edit Menu
+                //if (user.RoleId == 3 || user.RoleId == 4)
+                //{
 
+                //}
 
-            //Complete Dashboards
-            countStartupsBS();
-            countStartupsBSPlus();
-            countStartupsNews();
-            SumConsumoTotal();
-            GetTopProfiles();
+                var ht = HttpContext.User;
 
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+                //Complete Dashboards
+                countStartupsBS();
+                countStartupsBSPlus();
+                countStartupsNews();
+                SumConsumoTotal();
+                GetTopProfiles();
+            }
             return View();
         }
 

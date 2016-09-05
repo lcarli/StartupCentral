@@ -18,8 +18,8 @@ namespace StartupCentral.Models
     {
         [Key]
         public int GeneralLogId { get; set; }
-        public int UsuarioId { get; set; }
-        public virtual User Usuario { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
         public DateTime Datetime { get; set; }
         public UserAction Action { get; set; }
         public string ObjectUsed { get; set; }

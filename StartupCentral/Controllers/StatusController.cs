@@ -33,7 +33,8 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Consultou, ObjectUsed = status.Nome, UsuarioId = HomeController.useridsession });
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = status.Nome, UserId= HomeController.useridsession });
+            await db.SaveChangesAsync();
             return View(status);
         }
 
@@ -56,7 +57,8 @@ namespace StartupCentral.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Salvou, ObjectUsed = status.Nome, UsuarioId = HomeController.useridsession });
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = status.Nome, UserId= HomeController.useridsession });
+            await db.SaveChangesAsync();
             return View(status);
         }
 
@@ -88,7 +90,8 @@ namespace StartupCentral.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Editou, ObjectUsed = status.Nome, UsuarioId = HomeController.useridsession });
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = status.Nome, UserId= HomeController.useridsession });
+            await db.SaveChangesAsync();
             return View(status);
         }
 
@@ -115,7 +118,8 @@ namespace StartupCentral.Controllers
             Status status = await db.Status.FindAsync(id);
             db.Status.Remove(status);
             await db.SaveChangesAsync();
-            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Deletou, ObjectUsed = status.Nome, UsuarioId = HomeController.useridsession });
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = status.Nome, UserId= HomeController.useridsession });
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

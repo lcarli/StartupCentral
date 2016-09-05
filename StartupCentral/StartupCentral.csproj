@@ -4565,6 +4565,7 @@
     <Content Include="Views\GeneralLog\Details.cshtml" />
     <Content Include="Views\GeneralLog\Edit.cshtml" />
     <Content Include="Views\GeneralLog\Index.cshtml" />
+    <Content Include="Views\Startupbs\UpdateSheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

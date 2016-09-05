@@ -27,7 +27,28 @@
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view" src="~/Content/images/lucas.png" alt="Avatar" title="Change the avatar">
+                                    @{ int p = ViewBag.UserImage;}
+                                    @switch (p)
+                                    {
+                                        case 1:
+                                            <img class="img-responsive avatar-view" src="~/Content/images/lucas.png" alt="Avatar" title="Change the avatar">
+                                            break;
+                                        case 2:
+                                            <img class="img-responsive avatar-view" src="~/Content/images/elisq.png" alt="Avatar" title="Change the avatar">
+                                            break;
+                                        case 3:
+                                            <img class="img-responsive avatar-view" src="~/Content/images/jannuzzi.png" alt="Avatar" title="Change the avatar">
+                                            break;
+                                        case 4:
+                                            <img class="img-responsive avatar-view" src="~/Content/images/marcelo.png" alt="Avatar" title="Change the avatar">
+                                            break;
+                                        case 5:
+                                            <img class="img-responsive avatar-view" src="~/Content/images/richard.png" alt="Avatar" title="Change the avatar">
+                                            break;
+                                        default:
+                                            <img class="img-responsive avatar-view" src="~/Content/images/user.png" alt="Avatar" title="Change the avatar">
+                                            break;
+                                    }
                                 </div>
                             </div>
                             <h3>@Html.DisplayFor(model=>model.nome)</h3>
@@ -106,7 +127,27 @@
                                             @foreach (var item in Model.Logs)
                                             {
                                                 <li>
-                                                    <img src=@ViewBag.UserImage class="avatar" alt="Avatar">
+                                                    @switch (p)
+                                                    {
+                                                        case 1:
+                                                            <img class="avatar" src="~/Content/images/lucas.png" alt="Avatar">
+                                                            break;
+                                                        case 2:
+                                                            <img class="avatar" src="~/Content/images/elisq.png" alt="Avatar">
+                                                            break;
+                                                        case 3:
+                                                            <img class="iavatar" src="~/Content/images/jannuzzi.png" alt="Avatar">
+                                                            break;
+                                                        case 4:
+                                                            <img class="avatar" src="~/Content/images/marcelo.png" alt="Avatar">
+                                                            break;
+                                                        case 5:
+                                                            <img class="avatar" src="~/Content/images/richard.png" alt="Avatar">
+                                                            break;
+                                                        default:
+                                                            <img class="avatar" src="~/Content/images/user.png" alt="Avatar">
+                                                            break;
+                                                    }
                                                     <div class="message_date">
                                                         <h3 class="date text-info">@Html.DisplayFor(modelItem => item.Datetime.Day)</h3>
                                                         @{ var m = item.Datetime.ToString("MMMM");}

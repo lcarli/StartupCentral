@@ -28,27 +28,8 @@ namespace StartupCentral.Controllers
             ViewBag.OwnerCounter = "20"; //contagem, em %, de owners desse user
             ViewBag.SiteCounter = "50"; //contagem, em %, de acesso deste user ao site
             ViewBag.CadastroCounter = "1"; //contagem, em %, de cadastros feitos por esse usuario.
-            switch (id)
-            {
-                case 1:
-                    ViewBag.UserImage = "~/Content/images/lucas.png";
-                        break;
-                case 2:
-                    ViewBag.UserImage = "~/Content/images/elisq.png";
-                    break;
-                case 3:
-                    ViewBag.UserImage = "~/Content/images/jannuzzi.png";
-                    break;
-                case 4:
-                    ViewBag.UserImage = "~/Content/images/marcelo.png";
-                    break;
-                case 5:
-                    ViewBag.UserImage = "~/Content/images/richard.png";
-                    break;
-                default:
-                    ViewBag.UserImage = "~/Content/images/user.png";
-                    break;
-            }
+            ViewBag.UserImage = id;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -53,16 +53,16 @@ namespace StartupCentral.Models
         public virtual Status Status { get; set; }
 
 
-        [Display(Name = "Consumo do Mês")]
-        public double ConsumoMes { get; set; }
+        [Display(Name = "Consumo do Mês"), DataType(DataType.Currency)]
+        public decimal ConsumoMes { get; set; }
 
 
-        [Display(Name = "Consumo Acumulado do Ano")]
-        public double ConsumoAcumulado { get; set; }
+        [Display(Name = "Consumo Acumulado do Ano"), DataType(DataType.Currency)]
+        public decimal ConsumoAcumulado { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0,c}")]
-        [Display(Name = "Consumo Pago")]
-        public double ConsumoPago { get; set; }
+        [Display(Name = "Consumo Pago"), DataType(DataType.Currency)]
+        public decimal ConsumoPago { get; set; }
 
         public string Observacoes { get; set; }
 

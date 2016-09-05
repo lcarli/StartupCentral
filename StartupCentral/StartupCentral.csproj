@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201609050948595_AddedLogClass.Designer.cs">
       <DependentUpon>201609050948595_AddedLogClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609051119034_ToDecimal.cs" />
+    <Compile Include="Migrations\201609051119034_ToDecimal.Designer.cs">
+      <DependentUpon>201609051119034_ToDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
     <Compile Include="Models\Beneficio.cs" />
@@ -4606,6 +4610,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609050948595_AddedLogClass.resx">
       <DependentUpon>201609050948595_AddedLogClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609051119034_ToDecimal.resx">
+      <DependentUpon>201609051119034_ToDecimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

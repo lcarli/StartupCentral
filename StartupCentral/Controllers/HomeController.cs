@@ -76,7 +76,7 @@ namespace StartupCentral.Controllers
         public void SumConsumoTotal()
         {
             var v = (from s in db.Startup select s).ToList();
-            double value = 0.0;
+            decimal value = 0;
             foreach (var item in v)
             {
                 value = value + item.ConsumoAcumulado;

@@ -36,6 +36,7 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
+            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Consultou, ObjectUsed = startupbs.Nome, UsuarioId = HomeController.useridsession });
             return View(startupbs);
         }
 
@@ -65,6 +66,7 @@ namespace StartupCentral.Controllers
             ViewBag.AceleradoraId = new SelectList(db.Aceleradora, "AceleradoraId", "Nome", startupbs.AceleradoraId);
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", startupbs.BeneficioId);
             ViewBag.StatusId = new SelectList(db.Status, "StatusId", "Nome", startupbs.StatusId);
+            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Salvou, ObjectUsed = startupbs.Nome, UsuarioId = HomeController.useridsession });
             return View(startupbs);
         }
 
@@ -104,6 +106,7 @@ namespace StartupCentral.Controllers
             ViewBag.AceleradoraId = new SelectList(db.Aceleradora, "AceleradoraId", "Nome", startupbs.AceleradoraId);
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", startupbs.BeneficioId);
             ViewBag.StatusId = new SelectList(db.Status, "StatusId", "Nome", startupbs.StatusId);
+            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Editou, ObjectUsed = startupbs.Nome, UsuarioId = HomeController.useridsession });
             return View(startupbs);
         }
 
@@ -130,6 +133,7 @@ namespace StartupCentral.Controllers
             Startupbs startupbs = await db.Startup.FindAsync(id);
             db.Startup.Remove(startupbs);
             await db.SaveChangesAsync();
+            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Deletou, ObjectUsed = startupbs.Nome, UsuarioId = HomeController.useridsession });
             return RedirectToAction("Index");
         }
 

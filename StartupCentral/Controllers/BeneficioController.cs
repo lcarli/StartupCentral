@@ -33,6 +33,7 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
+            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Consultou, ObjectUsed = beneficio.Nome, UsuarioId = HomeController.useridsession });
             return View(beneficio);
         }
 
@@ -55,7 +56,7 @@ namespace StartupCentral.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Salvou, ObjectUsed = beneficio.Nome, UsuarioId = HomeController.useridsession });
             return View(beneficio);
         }
 
@@ -87,6 +88,7 @@ namespace StartupCentral.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Editou, ObjectUsed = beneficio.Nome, UsuarioId = HomeController.useridsession });
             return View(beneficio);
         }
 
@@ -113,6 +115,7 @@ namespace StartupCentral.Controllers
             Beneficio beneficio = await db.Benefício.FindAsync(id);
             db.Benefício.Remove(beneficio);
             await db.SaveChangesAsync();
+            db.GeneralLogs.Add(new GeneralLog { Datetime = new DateTime(), Action = UserAction.Deletou, ObjectUsed = beneficio.Nome, UsuarioId = HomeController.useridsession });
             return RedirectToAction("Index");
         }
 

@@ -1,47 +1,50 @@
 ﻿@model StartupCentral.Models.Endereco
 
-<dl class="dl-horizontal">
-    <dt>
-        @Html.DisplayNameFor(model => model.Rua)
-    </dt>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-group">
+    @Html.LabelFor(model => model.Rua, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Rua, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.Rua, "", new { @class = "text-danger" })
+    </div>
+</div>
 
-    <dd>
-        @Html.DisplayFor(model => model.Rua)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Numero)
-    </dt>
+<div class="form-group">
+    @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+    </div>
+</div>
 
-    <dd>
-        @Html.DisplayFor(model => model.Numero)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Complemento)
-    </dt>
+<div class="form-group">
+    @Html.LabelFor(model => model.Complemento, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Complemento, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.Complemento, "", new { @class = "text-danger" })
+    </div>
+</div>
 
-    <dd>
-        @Html.DisplayFor(model => model.Complemento)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.CEP)
-    </dt>
+<div class="form-group">
+    @Html.LabelFor(model => model.CEP, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
+    </div>
+</div>
 
-    <dd>
-        @Html.DisplayFor(model => model.CEP)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Estado)
-    </dt>
+<div class="form-group">
+    @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+    </div>
+</div>
 
-    <dd>
-        @Html.DisplayFor(model => model.Estado)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Pais)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.Pais)
-    </dd>
-</dl>
-
+<div class="form-group">
+    @Html.LabelFor(model => model.Pais, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Pais, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.Pais, "", new { @class = "text-danger" })
+    </div>
+</div>

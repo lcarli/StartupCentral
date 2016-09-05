@@ -1,52 +1,98 @@
 ﻿@model IEnumerable<StartupCentral.Models.Contato>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Contatos";
     Layout = "~/Views/Shared/_LayoutGL.cshtml";
 }
 
-<h2>Index</h2>
+<!-- page content -->
+<div class="col-md-12 col-sm-12 col-xs-12" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Lista de Contatos</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                <ul class="pagination pagination-split">
+                                    <li><a href="#">A</a></li>
+                                    <li><a href="#">B</a></li>
+                                    <li><a href="#">C</a></li>
+                                    <li><a href="#">D</a></li>
+                                    <li><a href="#">E</a></li>
+                                    <li>...</li>
+                                    <li><a href="#">W</a></li>
+                                    <li><a href="#">X</a></li>
+                                    <li><a href="#">Y</a></li>
+                                    <li><a href="#">Z</a></li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                           @foreach (var item in Model)
+                           {
+                            <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                <div class="well profile_view">
+                                    <div class="col-sm-12">
+                                        <h4 class="brief"><i>Contato: @Html.DisplayFor(modelItem => item.TipoDoContato)</i></h4>
+                                        <div class="left col-xs-7">
+                                            <h2>@Html.DisplayFor(modelItem => item.Nome)</h2>
+                                            @if (item.Startup.Count() > 0)
+                                            {
+                                                <p><strong>Startup: </strong> @Html.DisplayFor(modelItem => item.Startup.FirstOrDefault().Nome) </p>
+                                            }
+                                            else if (item.Aceleradora.Count() > 0)
+                                            {
+                                                <p><strong>Startup: </strong> @Html.DisplayFor(modelItem => item.Aceleradora.FirstOrDefault().Nome) </p>
+                                            }
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-phone"></i> Telefone #: @Html.DisplayFor(modelItem => item.Telefone)</li>
+                                            </ul>
+                                        </div>
+                                        <div class="right col-xs-5 text-center">
+                                            <img src="~/Content/images/user.png" alt="" class="img-circle img-responsive">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 bottom text-center">
+                                        <div class="col-xs-12 col-sm-6 emphasis">
+                                            <p class="ratings">
+                                                <a>4.0</a>
+                                                <a href="#"><span class="fa fa-star"></span></a>
+                                                <a href="#"><span class="fa fa-star"></span></a>
+                                                <a href="#"><span class="fa fa-star"></span></a>
+                                                <a href="#"><span class="fa fa-star"></span></a>
+                                                <a href="#"><span class="fa fa-star-o"></span></a>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 emphasis">
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.ContatoId }, new { @class = "btn btn-success btn-xs" })
+                                            @Html.ActionLink("Detalhes", "Details", new { id = item.ContatoId }, new { @class = "btn btn-primary btn-xs" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoDoContato)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoDoContato)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ContatoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ContatoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ContatoId })
-        </td>
-    </tr>
-}
-
-</table>

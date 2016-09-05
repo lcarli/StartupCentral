@@ -5,31 +5,144 @@
     Layout = "~/Views/Shared/_LayoutGL.cshtml";
 }
 
-<h2>Details</h2>
+<!-- page content -->
+<div class="col-md-12 col-sm-12 col-xs-12" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Perfil do Usuário</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-    </dl>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Usuário <small>Detalhes e atividades</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <!-- Current avatar -->
+                                    <img class="img-responsive avatar-view" src="~/Content/images/user.png" alt="Avatar" title="Change the avatar">
+                                </div>
+                            </div>
+                            <h3>@Html.DisplayFor(model=>model.nome)</h3>
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i> São Paulo, São Paulo, BR
+                                </li>
+                                <li>
+                                    <i class="fa fa-briefcase user-profile-icon"></i> @Html.DisplayFor(model=>model.email)
+                                </li>
+                            </ul>
+                            @if (Model.nome == ViewBag.Nome)
+                            {
+                                <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-success" disabled="disabled"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                            }
+                            <br />
+                            <!-- start actions -->
+                            <h4>Ações</h4>
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    <p>Cadastro de Startups</p>
+                                    <div class="progress progress_sm">
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=@ViewBag.CadastroCounter></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>Acesso ao Site</p>
+                                    <div class="progress progress_sm">
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=@ViewBag.SiteCounter></div>
+                                    </div>
+                                </li>
+                                @if (ViewBag.Owner)
+                                {
+                                    <li>
+                                        <p>Owner</p>
+                                        <div class="progress progress_sm">
+                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=@ViewBag.OwnerCounter></div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                            <!-- end of actions -->
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="profile_title">
+                                <div class="col-md-6">
+                                    <h2>Relatório de atividades</h2>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- start of user-activity-graph -->
+                            <div id="graph_bar" style="width:100%; height:280px;"></div>
+                            <!-- end of user-activity-graph -->
+                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                                    </li>
+                                    <li role="presentation" class="">
+                                        <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                                    </li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                        <!-- start recent activity -->
+                                        <ul class="messages">
+                                            @foreach (var item in Model.Logs)
+                                            {
+                                                <li>
+                                                    <img src=@ViewBag.ImgUser class="avatar" alt="Avatar">
+                                                    <div class="message_date">
+                                                        <h3 class="date text-info">@Html.DisplayFor(modelItem => item.Datetime.Day)</h3>
+                                                        <p class="month">@Html.DisplayFor(modelItem=>item.Datetime.Month)</p>
+                                                    </div>
+                                                    <div class="message_wrapper">
+                                                        <h4 class="heading">@Html.DisplayFor(model => model.nome)</h4>
+                                                        <blockquote class="message">@Html.DisplayFor(modelItem => item.Action) a 'entidade' nesta data.</blockquote>
+                                                        <br />
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <!-- end recent activity -->
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                        <p>
+                                            @Html.DisplayFor(model=>model.Role.Descricao)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- /page content -->

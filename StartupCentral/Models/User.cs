@@ -11,6 +11,11 @@ namespace StartupCentral.Models
     [Table("User")]
     public class User
     {
+        public User()
+        {
+            this.Logs = new List<GeneralLog>();
+        }
+
         [Key]
         public int UserId { get; set; }
 
@@ -18,5 +23,11 @@ namespace StartupCentral.Models
         public string nome { get; set; }
 
         public string email { get; set; }
+
+        public int RoleId { get; set; }
+
+        public virtual Roles Role { get; set; }
+
+        public virtual ICollection<GeneralLog> Logs { get; set; }
     }
 }

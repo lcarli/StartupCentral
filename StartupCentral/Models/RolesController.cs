@@ -7,115 +7,110 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using StartupCentral.Models;
 
-namespace StartupCentral.Controllers
+namespace StartupCentral.Models
 {
-    public class UserController : Controller
+    public class RolesController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
 
-        // GET: User
+        // GET: Roles
         public async Task<ActionResult> Index()
         {
-            return View(await db.User.ToListAsync());
+            return View(await db.Roles.ToListAsync());
         }
 
-        // GET: User/Details/5
+        // GET: Roles/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            ViewBag.Owner = true; // booleano para verificar se existe startups com esse user como Owner
-            ViewBag.OwnerCounter = "20"; //contagem, em %, de owners desse user
-            ViewBag.SiteCounter = "50"; //contagem, em %, de acesso deste user ao site
-            ViewBag.CadastroCounter = "1"; //contagem, em %, de cadastros feitos por esse usuario.
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.User.FindAsync(id);
-            if (user == null)
+            Roles roles = await db.Roles.FindAsync(id);
+            if (roles == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(roles);
         }
 
-        // GET: User/Create
+        // GET: Roles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Roles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "UserId,nome,email")] User user)
+        public async Task<ActionResult> Create([Bind(Include = "RoleId,Nome,Descricao")] Roles roles)
         {
             if (ModelState.IsValid)
             {
-                db.User.Add(user);
+                db.Roles.Add(roles);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(roles);
         }
 
-        // GET: User/Edit/5
+        // GET: Roles/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.User.FindAsync(id);
-            if (user == null)
+            Roles roles = await db.Roles.FindAsync(id);
+            if (roles == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(roles);
         }
 
-        // POST: User/Edit/5
+        // POST: Roles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "UserId,nome,email")] User user)
+        public async Task<ActionResult> Edit([Bind(Include = "RoleId,Nome,Descricao")] Roles roles)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(roles).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            return View(roles);
         }
 
-        // GET: User/Delete/5
+        // GET: Roles/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.User.FindAsync(id);
-            if (user == null)
+            Roles roles = await db.Roles.FindAsync(id);
+            if (roles == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(roles);
         }
 
-        // POST: User/Delete/5
+        // POST: Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            User user = await db.User.FindAsync(id);
-            db.User.Remove(user);
+            Roles roles = await db.Roles.FindAsync(id);
+            db.Roles.Remove(roles);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

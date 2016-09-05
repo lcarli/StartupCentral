@@ -2,36 +2,38 @@
 
 @for (int i = 0; i < Model.Count; i++)
 {
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model[i].Nome)
-        </dt>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model[i].Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model[i].Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model[i].Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model[i].Nome)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model[i].Telefone)
-        </dt>
+        <div class="form-group">
+            @Html.LabelFor(model => model[i].Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model[i].Telefone, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model[i].Telefone, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model[i].Telefone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model[i].Email)
-        </dt>
+        <div class="form-group">
+            @Html.LabelFor(model => model[i].Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model[i].Email, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model[i].Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model[i].Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model[i].TipoDoContato)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model[i].TipoDoContato)
-        </dd>
-    </dl>
+        <div class="form-group">
+            @Html.LabelFor(model => model[i].TipoDoContato, "Tipo do Contato", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model[i].TipoDoContato, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model[i].TipoDoContato, "", new { @class = "text-danger" })
+            </div>
+        </div>
     <div class="clearfix"></div>
 }
 

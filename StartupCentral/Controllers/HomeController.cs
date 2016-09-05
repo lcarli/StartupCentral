@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
 namespace StartupCentral.Controllers
 {
@@ -13,6 +14,7 @@ namespace StartupCentral.Controllers
     public class HomeController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
+        public static int useridsession;
 
         public async Task<ActionResult> Index()
         {
@@ -20,15 +22,16 @@ namespace StartupCentral.Controllers
             var cp = ClaimsPrincipal.Current.Identities.First();
             Models.User user = new Models.User() { nome = cp.Claims.First(c => c.Type == "name").Value, email = cp.Name };
             ViewBag.Nome = user.nome.ToString();
-            if (db.User.FindAsync(user.email) == null)
-            {
-                db.User.Add(user);
-                await db.SaveChangesAsync();
-            }
-            else
-            {
-                db.LogLogin.Add(new Models.LogLogin() { datetime = DateTime.Now, user = user });
-            }
+            db.LogLogin.Add(new Models.LogLogin() { datetime = DateTime.Now, user = user });
+            await db.SaveChangesAsync();
+            ViewBag.UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId;
+            useridsession = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId;
+            //Edit Menu
+            //if (user.RoleId == 3 || user.RoleId == 4)
+            //{
+
+            //}
+
 
             //Complete Dashboards
             countStartupsBS();

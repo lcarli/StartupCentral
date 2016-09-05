@@ -89,6 +89,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.4.878, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.13.4\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.Platform, Version=3.13.4.878, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.13.4\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -219,7 +227,12 @@
     <Compile Include="Models\Beneficio.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Endereco.cs" />
+    <Compile Include="Models\GeneralLog.cs" />
+    <Compile Include="Controllers\GeneralLogController.cs" />
     <Compile Include="Models\LogLogin.cs" />
+    <Compile Include="Models\O365Helper.cs" />
+    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\RolesController.cs" />
     <Compile Include="Models\Startupbs.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
@@ -4542,6 +4555,16 @@
     <Content Include="Views\Status\Index.cshtml" />
     <Content Include="Views\Shared\ContatoDetailsPartial.cshtml" />
     <Content Include="Views\Shared\EnderecoDetailsPartial.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\GeneralLog\Create.cshtml" />
+    <Content Include="Views\GeneralLog\Delete.cshtml" />
+    <Content Include="Views\GeneralLog\Details.cshtml" />
+    <Content Include="Views\GeneralLog\Edit.cshtml" />
+    <Content Include="Views\GeneralLog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

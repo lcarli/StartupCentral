@@ -78,6 +78,8 @@ namespace StartupCentral.Models
         public DbSet<Contato> Contato { get; set; }
         public DbSet<Beneficio> Benefício { get; set; }
         public DbSet<LogLogin> LogLogin { get; set; }
+        public DbSet<Roles> Roles { get; set; }
+        public DbSet<GeneralLog> GeneralLogs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -85,6 +87,6 @@ namespace StartupCentral.Models
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             base.OnModelCreating(modelBuilder);
-    }
+        }
     }
 }

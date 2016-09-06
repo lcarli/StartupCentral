@@ -53,18 +53,18 @@ namespace StartupCentral.Controllers
             return View();
         }
 
-        public void countStartupsBS()
-        {
-            var v1 = (from s in db.Startup where s.Beneficio.Nome == "BizSpark PLUS" select s).ToList().Count();
-            var v2 = (from s in db.Startup where s.Beneficio.Nome == "BizSpark PLUS" select s).ToList().Count();
-            var value = v1 + v2;
-            ViewBag.NumStartupsBS = value;
-        }
-
         public void countStartupsBSPlus()
         {
-            var value = (from s in db.Startup where s.Beneficio.Nome == "BizSpark" select s).ToList().Count();
-            @ViewBag.NumStartupsBSPlus = value;
+            var v1 = (from s in db.Startup where s.Beneficio.Nome == "BizSpark PLUS" select s).ToList().Count();
+            var v2 = (from s in db.Startup where s.Beneficio.Nome == "BizSpark Sponsorship" select s).ToList().Count();
+            var value = v1 + v2;
+            ViewBag.NumStartupsBSPlus = value;
+        }
+
+        public void countStartupsBS()
+        {
+            var value = (from s in db.Startup where s.Beneficio.BeneficioId == 1 select s).ToList().Count();
+            @ViewBag.NumStartupsBS = value;
         }
 
         public void countStartupsNews()

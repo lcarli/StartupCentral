@@ -36,8 +36,8 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = startupbs.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
+            //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = startupbs.Nome, UserId= HomeController.useridsession });
+            //await db.SaveChangesAsync();
             return View(startupbs);
         }
 
@@ -61,8 +61,8 @@ namespace StartupCentral.Controllers
             {
                 db.Startup.Add(startupbs);
                 await db.SaveChangesAsync();
-                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = startupbs.Nome, UserId = HomeController.useridsession });
-                await db.SaveChangesAsync();
+                //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = startupbs.Nome, UserId = HomeController.useridsession });
+                //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -103,8 +103,8 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(startupbs).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = startupbs.Nome, UserId = HomeController.useridsession });
-                await db.SaveChangesAsync();
+                //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = startupbs.Nome, UserId = HomeController.useridsession });
+                //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.AceleradoraId = new SelectList(db.Aceleradora, "AceleradoraId", "Nome", startupbs.AceleradoraId);
@@ -136,8 +136,8 @@ namespace StartupCentral.Controllers
             Startupbs startupbs = await db.Startup.FindAsync(id);
             db.Startup.Remove(startupbs);
             await db.SaveChangesAsync();
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = startupbs.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
+            //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = startupbs.Nome, UserId= HomeController.useridsession });
+            //await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

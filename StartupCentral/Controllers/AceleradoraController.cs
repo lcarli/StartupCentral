@@ -36,8 +36,8 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = aceleradora.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
+            //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = aceleradora.Nome, UserId= HomeController.useridsession });
+            //await db.SaveChangesAsync();
             return View(aceleradora);
         }
 
@@ -59,8 +59,8 @@ namespace StartupCentral.Controllers
             {
                 db.Aceleradora.Add(aceleradora);
                 await db.SaveChangesAsync();
-                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = aceleradora.Nome, UserId = HomeController.useridsession });
-                await db.SaveChangesAsync();
+                //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = aceleradora.Nome, UserId = HomeController.useridsession });
+                //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -97,8 +97,8 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(aceleradora).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = aceleradora.Nome, UserId = HomeController.useridsession });
-                await db.SaveChangesAsync();
+                //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = aceleradora.Nome, UserId = HomeController.useridsession });
+                //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", aceleradora.BeneficioId);
@@ -128,8 +128,8 @@ namespace StartupCentral.Controllers
             Aceleradora aceleradora = await db.Aceleradora.FindAsync(id);
             db.Aceleradora.Remove(aceleradora);
             await db.SaveChangesAsync();
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = aceleradora.Nome, UserId= HomeController.useridsession });
-            await db.SaveChangesAsync();
+            //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = aceleradora.Nome, UserId= HomeController.useridsession });
+            //await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

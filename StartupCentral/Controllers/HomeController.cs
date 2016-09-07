@@ -69,13 +69,13 @@ namespace StartupCentral.Controllers
 
         public void countStartupsNews()
         {
-            var value = (from s in db.Startup where s.Status.Nome == "Não Inscrito" select s).ToList().Count();
+            var value = (from s in db.Startup where s.Status.Nome == "WIN" select s).ToList().Count();
 
-            @ViewBag.NumNews = value;
+            @ViewBag.NumWins = value;
         }
         public void SumConsumoTotal()
         {
-            var v = (from s in db.Startup select s).ToList();
+            var v = db.Startup.ToList();
             decimal value = 0;
             foreach (var item in v)
             {
@@ -84,17 +84,15 @@ namespace StartupCentral.Controllers
             @ViewBag.ConsumoTotal = $"${value}";
         }
 
-        public ActionResult JsonValues()
-        {
-            Random randNums = new Random();
-            var randNum = randNums.Next(10, 20);
-            var ts = DateTime.UtcNow - new DateTime(1970, 1, 1);
-            var result = String.Format("{0} milliseconds since 1970/01/01", ts.TotalMilliseconds);
-            //Criar o data para o gráfico, aqui
-            return Json(
-                new[] { new[] { ts.TotalMilliseconds, randNum } },
-                JsonRequestBehavior.AllowGet);
-        }
+        //public ActionResult JsonValues()
+        //{
+        //    string[] data = new string[160];
+        //    var datadb = db.Startup.Where(s => s.)
+        //    //Criar o data para o gráfico, aqui
+        //    return Json(
+        //        new[] { new[] { ts.TotalMilliseconds, randNum } },
+        //        JsonRequestBehavior.AllowGet);
+        //}
 
         public void GetTopProfiles()
         {

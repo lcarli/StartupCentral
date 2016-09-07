@@ -22,6 +22,15 @@ namespace StartupCentral.Controllers
             return View(await startup.ToListAsync());
         }
 
+        [HttpPost]
+        //Overwrite with search
+        public async Task<ActionResult> Index(string id)
+        {
+            var SearchString = Request.Form[0];
+            var startups = db.Startup.Include(s => s.Aceleradora).Include(s => s.Beneficio).Include(s => s.Status).Include(s => s.Contatos).Where(s=>s.Nome.Contains(SearchString));
+            return View(await startups.ToListAsync());
+        }
+
         // GET: Startupbs/Details/5
         public async Task<ActionResult> Details(int? id)
         {

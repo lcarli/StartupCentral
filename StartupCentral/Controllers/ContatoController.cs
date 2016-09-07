@@ -21,6 +21,15 @@ namespace StartupCentral.Controllers
             return View(await db.Contato.ToListAsync());
         }
 
+        [HttpPost]
+        //Overwrite with search
+        public async Task<ActionResult> Index(string id)
+        {
+            var SearchString = Request.Form[0];
+            var contatos = db.Contato.Where(s => s.Nome.Contains(SearchString));
+            return View(await contatos.ToListAsync());
+        }
+
         // GET: Contato/Details/5
         public async Task<ActionResult> Details(int? id)
         {

@@ -6,109 +6,133 @@
     bool lineColor = true;
 }
 
-<div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>Lista de Startups <small>Startups BizSpark Brasil</small></h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    @Html.ActionLink("Adicionar Nova", "Create")
-                </li>
-            </ul>
-            <div class="clearfix"></div>
+<div class="col-md-12 col-sm-12 col-xs-12" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Lista de Contatos</h3>
+            </div>
+            @using (Html.BeginForm("Index", "Startupbs", FormMethod.Post))
+            {
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                           @Html.TextBox("SearchString", "" ,new { @class = "form-control", placeholder = "Digite aqui" })
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">Go!</button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
-        <div class="x_content">
-            <div class="table-responsive">
-                <table class="table table-striped jambo_table bulk_action">
-                    <thead>
-                        <tr class="headings">
-                            @*<th>
-                                    <input type="checkbox" id="check-all" class="flat">
-                                </th>*@
-                            <th class="column-title">Nome </th>
-                            <th class="column-title">Email </th>
-                            <th class="column-title">Microsoft Account </th>
-                            <th class="column-title">BizSpark ID </th>
-                            <th class="column-title">Aceleradora </th>
-                            <th class="column-title">Benefício </th>
-                            <th class="column-title">Status </th>
-                            <th class="column-title">Consumo Mês </th>
-                            <th class="column-title">Consumo Acumulado </th>
-                            <th class="column-title">Consumo Pago </th>
-                            <th class="column-title">Owner </th>
-                            <th class="column-title no-link last">
-                                <span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="11">
-                                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            if (lineColor)
-                            {
-                                lineColor = !lineColor;
-                                <tr class="even pointer">
-                                    @*<td class="a-center ">
-                                            <input type="checkbox" class="flat" name="table_records">
-                                        </td>*@
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Nome)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Email)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.MicrosoftAccount)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.BizSparkID)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Aceleradora.Nome)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Beneficio.Nome)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Status.Nome)</td>
-                                    <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoMes)</td>
-                                    <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoAcumulado)</td>
-                                    <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoPago)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Owner)</td>
-                                    <td class=" last">
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.StartupbsId }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.StartupbsId }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.StartupbsId })
-                                    </td>
-                                </tr>
-                            }
-                            else
-                            {
-                                lineColor = !lineColor;
-                                <tr class="odd pointer">
-                                    @*<td class="a-center ">
-                                            <input type="checkbox" class="flat" name="table_records">
-                                        </td>*@
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Nome)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Email)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.MicrosoftAccount)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.BizSparkID)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Aceleradora.Nome)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Beneficio.Nome)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Status.Nome)</td>
-                                    <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoMes)</td>
-                                    <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoAcumulado)</td>
-                                    <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoPago)</td>
-                                    <td class=" ">@Html.DisplayFor(modelItem => item.Owner)</td>
-                                    <td class=" last">
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.StartupbsId }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.StartupbsId }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.StartupbsId })
-                                    </td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Lista de Startups <small>Startups BizSpark Brasil</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                @Html.ActionLink("Adicionar Nova", "Create")
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                    <tr class="headings">
+                                        @*<th>
+                                                <input type="checkbox" id="check-all" class="flat">
+                                            </th>*@
+                                        <th class="column-title">Nome </th>
+                                        <th class="column-title">Email </th>
+                                        <th class="column-title">Microsoft Account </th>
+                                        <th class="column-title">BizSpark ID </th>
+                                        <th class="column-title">Aceleradora </th>
+                                        <th class="column-title">Benefício </th>
+                                        <th class="column-title">Status </th>
+                                        <th class="column-title">Consumo Mês </th>
+                                        <th class="column-title">Consumo Acumulado </th>
+                                        <th class="column-title">Consumo Pago </th>
+                                        <th class="column-title">Owner </th>
+                                        <th class="column-title no-link last">
+                                            <span class="nobr">Action</span>
+                                        </th>
+                                        <th class="bulk-actions" colspan="11">
+                                            <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        if (lineColor)
+                                        {
+                                            lineColor = !lineColor;
+                                            <tr class="even pointer">
+                                                @*<td class="a-center ">
+                                                        <input type="checkbox" class="flat" name="table_records">
+                                                    </td>*@
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Nome)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Email)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.MicrosoftAccount)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.BizSparkID)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Aceleradora.Nome)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Beneficio.Nome)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Status.Nome)</td>
+                                                <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoMes)</td>
+                                                <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoAcumulado)</td>
+                                                <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoPago)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Owner)</td>
+                                                <td class=" last">
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.StartupbsId }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.StartupbsId }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.StartupbsId })
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            lineColor = !lineColor;
+                                            <tr class="odd pointer">
+                                                @*<td class="a-center ">
+                                                        <input type="checkbox" class="flat" name="table_records">
+                                                    </td>*@
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Nome)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Email)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.MicrosoftAccount)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.BizSparkID)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Aceleradora.Nome)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Beneficio.Nome)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Status.Nome)</td>
+                                                <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoMes)</td>
+                                                <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoAcumulado)</td>
+                                                <td class="a-right a-right ">@Html.DisplayFor(modelItem => item.ConsumoPago)</td>
+                                                <td class=" ">@Html.DisplayFor(modelItem => item.Owner)</td>
+                                                <td class=" last">
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.StartupbsId }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.StartupbsId }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.StartupbsId })
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- iCheck -->
-    <script src="~Content/vendors/iCheck/icheck.min.js"></script>
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <!-- FastClick -->
+        <script src="../vendors/fastclick/lib/fastclick.js"></script>
+        <!-- iCheck -->
+        <script src="~Content/vendors/iCheck/icheck.min.js"></script>
+    }

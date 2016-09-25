@@ -14,16 +14,21 @@ namespace StartupCentral.Controllers
     public class UserController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
+        User userlogged = HomeController.userlogged;
 
         // GET: User
         public async Task<ActionResult> Index()
         {
+            ViewBag.Nome = userlogged.nome.ToString();
+            ViewBag.UserId = userlogged.UserId;
             return View(await db.User.ToListAsync());
         }
 
         // GET: User/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            ViewBag.Nome = userlogged.nome.ToString();
+            ViewBag.UserId = userlogged.UserId;
             ViewBag.Owner = true; // booleano para verificar se existe startups com esse user como Owner
             ViewBag.OwnerCounter = "20"; //contagem, em %, de owners desse user
             ViewBag.SiteCounter = "50"; //contagem, em %, de acesso deste user ao site
@@ -34,7 +39,16 @@ namespace StartupCentral.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.User.FindAsync(id);
+            User user;
+            if (userlogged.UserId == id)
+            {
+                user = await db.User.FindAsync(id);
+            }
+            else
+            {
+                user = await db.User.FindAsync(userlogged.UserId);
+            }
+            
             if (user == null)
             {
                 return HttpNotFound();
@@ -45,6 +59,8 @@ namespace StartupCentral.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+            ViewBag.Nome = userlogged.nome.ToString();
+            ViewBag.UserId = userlogged.UserId;
             return View();
         }
 
@@ -55,6 +71,8 @@ namespace StartupCentral.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "UserId,nome,email")] User user)
         {
+            ViewBag.Nome = userlogged.nome.ToString();
+            ViewBag.UserId = userlogged.UserId;
             if (ModelState.IsValid)
             {
                 db.User.Add(user);
@@ -68,6 +86,8 @@ namespace StartupCentral.Controllers
         // GET: User/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            ViewBag.Nome = userlogged.nome.ToString();
+            ViewBag.UserId = userlogged.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -87,6 +107,8 @@ namespace StartupCentral.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "UserId,nome,email")] User user)
         {
+            ViewBag.Nome = userlogged.nome.ToString();
+            ViewBag.UserId = userlogged.UserId;
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
@@ -99,6 +121,8 @@ namespace StartupCentral.Controllers
         // GET: User/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            ViewBag.Nome = userlogged.nome.ToString();
+            ViewBag.UserId = userlogged.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

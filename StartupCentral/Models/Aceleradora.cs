@@ -16,6 +16,7 @@ namespace StartupCentral.Models
         {
             this.Startups = new List<Startupbs>();
             this.Contatos = new HashSet<Contato>();
+            this.Observacoes = new List<Observacoes>();
         }
 
         [Required(ErrorMessage = "Nome não pode ser branco.")]
@@ -35,6 +36,6 @@ namespace StartupCentral.Models
 
         public virtual ICollection<Startupbs> Startups { get; set; }
 
-        public string Observacoes { get; set; }
+        public virtual ICollection<Observacoes> Observacoes { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace StartupCentral.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ToDecimal : IMigrationMetadata
+    public sealed partial class NotRequired : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ToDecimal));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NotRequired));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609051119034_ToDecimal"; }
+            get { return "201609251640309_NotRequired"; }
         }
         
         string IMigrationMetadata.Source

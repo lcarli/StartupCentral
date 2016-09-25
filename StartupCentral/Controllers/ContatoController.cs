@@ -8,16 +8,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StartupCentral.Models;
+using System.Security.Claims;
 
 namespace StartupCentral.Controllers
 {
     public class ContatoController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
+        User user = HomeController.userlogged;
 
         // GET: Contato
         public async Task<ActionResult> Index()
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             return View(await db.Contato.ToListAsync());
         }
 
@@ -25,6 +29,8 @@ namespace StartupCentral.Controllers
         //Overwrite with search
         public async Task<ActionResult> Index(string id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             var SearchString = Request.Form[0];
             var contatos = db.Contato.Where(s => s.Nome.Contains(SearchString));
             return View(await contatos.ToListAsync());
@@ -33,6 +39,8 @@ namespace StartupCentral.Controllers
         // GET: Contato/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -42,14 +50,16 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
-            //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = contato.Nome, UserId= HomeController.useridsession });
-            //await db.SaveChangesAsync();
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = contato.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
+            await db.SaveChangesAsync();
             return View(contato);
         }
 
         // GET: Contato/Create
         public ActionResult Create()
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             return View();
         }
 
@@ -64,8 +74,8 @@ namespace StartupCentral.Controllers
             {
                 db.Contato.Add(contato);
                 await db.SaveChangesAsync();
-                //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = contato.Nome, UserId = HomeController.useridsession });
-                //await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = contato.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(contato);
@@ -74,6 +84,8 @@ namespace StartupCentral.Controllers
         // GET: Contato/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,8 +109,8 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(contato).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = contato.Nome, UserId = HomeController.useridsession });
-                //await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = contato.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(contato);
@@ -107,6 +119,8 @@ namespace StartupCentral.Controllers
         // GET: Contato/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -127,8 +141,8 @@ namespace StartupCentral.Controllers
             Contato contato = await db.Contato.FindAsync(id);
             db.Contato.Remove(contato);
             await db.SaveChangesAsync();
-            //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = contato.Nome, UserId= HomeController.useridsession });
-            //await db.SaveChangesAsync();
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = contato.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

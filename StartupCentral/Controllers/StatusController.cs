@@ -8,22 +8,28 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StartupCentral.Models;
+using System.Security.Claims;
 
 namespace StartupCentral.Controllers
 {
     public class StatusController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
+        User user = HomeController.userlogged;
 
         // GET: Status
         public async Task<ActionResult> Index()
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             return View(await db.Status.ToListAsync());
         }
 
         // GET: Status/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -33,7 +39,7 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = status.Nome, UserId= HomeController.useridsession });
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = status.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
             await db.SaveChangesAsync();
             return View(status);
         }
@@ -41,6 +47,8 @@ namespace StartupCentral.Controllers
         // GET: Status/Create
         public ActionResult Create()
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             return View();
         }
 
@@ -55,7 +63,7 @@ namespace StartupCentral.Controllers
             {
                 db.Status.Add(status);
                 await db.SaveChangesAsync();
-                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = status.Nome, UserId = HomeController.useridsession });
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = status.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -65,6 +73,8 @@ namespace StartupCentral.Controllers
         // GET: Status/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -88,7 +98,7 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(status).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = status.Nome, UserId = HomeController.useridsession });
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = status.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -98,6 +108,8 @@ namespace StartupCentral.Controllers
         // GET: Status/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,7 +130,7 @@ namespace StartupCentral.Controllers
             Status status = await db.Status.FindAsync(id);
             db.Status.Remove(status);
             await db.SaveChangesAsync();
-            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = status.Nome, UserId= HomeController.useridsession });
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = status.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

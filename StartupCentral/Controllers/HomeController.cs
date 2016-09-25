@@ -14,7 +14,7 @@ namespace StartupCentral.Controllers
     public class HomeController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
-        public static int useridsession;
+        public static User userlogged;
 
         public async Task<ActionResult> Index()
         {
@@ -26,7 +26,7 @@ namespace StartupCentral.Controllers
             //se user for null, usuario nao pode acessar.
             if (user == null)
             {
-                
+                //redirect to erro page (You don't have access)
             }
             else
             {
@@ -34,7 +34,7 @@ namespace StartupCentral.Controllers
                 db.LogLogin.Add(new Models.LogLogin() { datetime = DateTime.Now, user = user });
                 await db.SaveChangesAsync();
                 ViewBag.UserId = user.UserId;
-                useridsession = user.UserId;
+                userlogged = user;
                 //Edit Menu
                 //if (user.RoleId == 3 || user.RoleId == 4)
                 //{

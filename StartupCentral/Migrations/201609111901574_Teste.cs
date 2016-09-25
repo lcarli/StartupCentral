@@ -3,7 +3,7 @@ namespace StartupCentral.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NewTest : DbMigration
+    public partial class Teste : DbMigration
     {
         public override void Up()
         {
@@ -14,7 +14,6 @@ namespace StartupCentral.Migrations
                         AceleradoraId = c.Int(nullable: false, identity: true),
                         Nome = c.String(nullable: false),
                         BeneficioId = c.Int(nullable: false),
-                        Observacoes = c.String(),
                         Endereco_EnderecoId = c.Int(),
                     })
                 .PrimaryKey(t => t.AceleradoraId)
@@ -56,10 +55,9 @@ namespace StartupCentral.Migrations
                         BeneficioId = c.Int(nullable: false),
                         AceleradoraId = c.Int(nullable: false),
                         StatusId = c.Int(nullable: false),
-                        ConsumoMes = c.Double(nullable: false),
-                        ConsumoAcumulado = c.Double(nullable: false),
-                        ConsumoPago = c.Double(nullable: false),
-                        Observacoes = c.String(),
+                        ConsumoMes = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ConsumoAcumulado = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ConsumoPago = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Owner = c.String(),
                     })
                 .PrimaryKey(t => t.StartupbsId)
@@ -69,6 +67,22 @@ namespace StartupCentral.Migrations
                 .Index(t => t.BeneficioId)
                 .Index(t => t.AceleradoraId)
                 .Index(t => t.StatusId);
+            
+            CreateTable(
+                "dbo.Observacoes",
+                c => new
+                    {
+                        ObservacoesId = c.Int(nullable: false, identity: true),
+                        Datetime = c.DateTime(nullable: false),
+                        StartupbsId = c.Int(nullable: false),
+                        AceleradoraId = c.Int(nullable: false),
+                        texto = c.String(),
+                    })
+                .PrimaryKey(t => t.ObservacoesId)
+                .ForeignKey("dbo.Aceleradora", t => t.AceleradoraId)
+                .ForeignKey("dbo.Startupbs", t => t.StartupbsId)
+                .Index(t => t.StartupbsId)
+                .Index(t => t.AceleradoraId);
             
             CreateTable(
                 "dbo.Status",
@@ -94,6 +108,43 @@ namespace StartupCentral.Migrations
                 .PrimaryKey(t => t.EnderecoId);
             
             CreateTable(
+                "dbo.GeneralLog",
+                c => new
+                    {
+                        GeneralLogId = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
+                        Datetime = c.DateTime(nullable: false),
+                        Action = c.Int(nullable: false),
+                        ObjectUsed = c.String(),
+                    })
+                .PrimaryKey(t => t.GeneralLogId)
+                .ForeignKey("dbo.User", t => t.UserId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.User",
+                c => new
+                    {
+                        UserId = c.Int(nullable: false, identity: true),
+                        nome = c.String(nullable: false),
+                        email = c.String(),
+                        RoleId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.Roles", t => t.RoleId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Roles",
+                c => new
+                    {
+                        RoleId = c.Int(nullable: false, identity: true),
+                        Nome = c.String(),
+                        Descricao = c.String(),
+                    })
+                .PrimaryKey(t => t.RoleId);
+            
+            CreateTable(
                 "dbo.LogLogin",
                 c => new
                     {
@@ -106,14 +157,16 @@ namespace StartupCentral.Migrations
                 .Index(t => t.user_UserId);
             
             CreateTable(
-                "dbo.User",
+                "dbo.Log",
                 c => new
                     {
-                        UserId = c.Int(nullable: false, identity: true),
-                        nome = c.String(nullable: false),
-                        email = c.String(),
+                        Id = c.Int(nullable: false, identity: true),
+                        Action = c.String(),
+                        OriginalValues = c.String(),
+                        NewValues = c.String(),
+                        Date = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.UserId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.ContatoAceleradora",
@@ -146,8 +199,12 @@ namespace StartupCentral.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.LogLogin", "user_UserId", "dbo.User");
+            DropForeignKey("dbo.User", "RoleId", "dbo.Roles");
+            DropForeignKey("dbo.GeneralLog", "UserId", "dbo.User");
             DropForeignKey("dbo.Aceleradora", "Endereco_EnderecoId", "dbo.Endereco");
             DropForeignKey("dbo.Startupbs", "StatusId", "dbo.Status");
+            DropForeignKey("dbo.Observacoes", "StartupbsId", "dbo.Startupbs");
+            DropForeignKey("dbo.Observacoes", "AceleradoraId", "dbo.Aceleradora");
             DropForeignKey("dbo.StartupbsContato", "Contato_ContatoId", "dbo.Contato");
             DropForeignKey("dbo.StartupbsContato", "Startupbs_StartupbsId", "dbo.Startupbs");
             DropForeignKey("dbo.Startupbs", "BeneficioId", "dbo.Beneficio");
@@ -160,6 +217,10 @@ namespace StartupCentral.Migrations
             DropIndex("dbo.ContatoAceleradora", new[] { "Aceleradora_AceleradoraId" });
             DropIndex("dbo.ContatoAceleradora", new[] { "Contato_ContatoId" });
             DropIndex("dbo.LogLogin", new[] { "user_UserId" });
+            DropIndex("dbo.User", new[] { "RoleId" });
+            DropIndex("dbo.GeneralLog", new[] { "UserId" });
+            DropIndex("dbo.Observacoes", new[] { "AceleradoraId" });
+            DropIndex("dbo.Observacoes", new[] { "StartupbsId" });
             DropIndex("dbo.Startupbs", new[] { "StatusId" });
             DropIndex("dbo.Startupbs", new[] { "AceleradoraId" });
             DropIndex("dbo.Startupbs", new[] { "BeneficioId" });
@@ -167,10 +228,14 @@ namespace StartupCentral.Migrations
             DropIndex("dbo.Aceleradora", new[] { "BeneficioId" });
             DropTable("dbo.StartupbsContato");
             DropTable("dbo.ContatoAceleradora");
-            DropTable("dbo.User");
+            DropTable("dbo.Log");
             DropTable("dbo.LogLogin");
+            DropTable("dbo.Roles");
+            DropTable("dbo.User");
+            DropTable("dbo.GeneralLog");
             DropTable("dbo.Endereco");
             DropTable("dbo.Status");
+            DropTable("dbo.Observacoes");
             DropTable("dbo.Startupbs");
             DropTable("dbo.Contato");
             DropTable("dbo.Beneficio");

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace StartupCentral.Models
 {
@@ -87,9 +89,10 @@ namespace StartupCentral.Models
 
             using (MemoryStream buffer = new MemoryStream())
             {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(obj.GetType());
-                ser.WriteObject(buffer, obj);
-                return ASCIIEncoding.ASCII.GetString(buffer.ToArray());
+                //DataContractJsonSerializer ser = new DataContractJsonSerializer(t);
+                //ser.WriteObject(buffer, obj);
+                //return ASCIIEncoding.ASCII.GetString(buffer.ToArray());
+                return JsonConvert.SerializeObject(obj);
             }
         }
     }

@@ -14,6 +14,7 @@ namespace StartupCentral.Controllers
     public class EnderecoController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
+        User user = HomeController.userlogged;
 
         // GET: Endereco
         public async Task<ActionResult> Index()

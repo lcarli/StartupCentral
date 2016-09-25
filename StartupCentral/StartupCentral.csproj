@@ -97,6 +97,11 @@
       <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.13.4\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -218,21 +223,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609040031175_NewTest.cs" />
-    <Compile Include="Migrations\201609040031175_NewTest.Designer.cs">
-      <DependentUpon>201609040031175_NewTest.cs</DependentUpon>
+    <Compile Include="Migrations\201609111901574_Teste.cs" />
+    <Compile Include="Migrations\201609111901574_Teste.Designer.cs">
+      <DependentUpon>201609111901574_Teste.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609050948595_AddedLogClass.cs" />
-    <Compile Include="Migrations\201609050948595_AddedLogClass.Designer.cs">
-      <DependentUpon>201609050948595_AddedLogClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609051119034_ToDecimal.cs" />
-    <Compile Include="Migrations\201609051119034_ToDecimal.Designer.cs">
-      <DependentUpon>201609051119034_ToDecimal.cs</DependentUpon>
+    <Compile Include="Migrations\201609251640309_NotRequired.cs" />
+    <Compile Include="Migrations\201609251640309_NotRequired.Designer.cs">
+      <DependentUpon>201609251640309_NotRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aceleradora.cs" />
     <Compile Include="Models\Beneficio.cs" />
+    <Compile Include="Models\Observacoes.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\GeneralLog.cs" />
@@ -241,7 +243,7 @@
     <Compile Include="Models\LogLogin.cs" />
     <Compile Include="Models\O365Helper.cs" />
     <Compile Include="Models\Roles.cs" />
-    <Compile Include="Models\RolesController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Models\Startupbs.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
@@ -4491,6 +4493,7 @@
     <Content Include="Content\vendors\validator\.gitignore" />
     <Content Include="Content\vendors\validator\README.md" />
     <Content Include="Content\vendors\validator\validator.jquery.json" />
+    <Content Include="DatabaseDiagram.cd" />
     <None Include="Properties\PublishProfiles\StartupCentral.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -4515,16 +4518,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\SignOutCallback.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Shared\_LayoutGL.cshtml" />
-    <Content Include="Views\Home\Dashboard.cshtml" />
-    <Content Include="Views\Home\Form.cshtml" />
-    <Content Include="Views\Home\FormAdvanced.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
@@ -4605,14 +4603,11 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609040031175_NewTest.resx">
-      <DependentUpon>201609040031175_NewTest.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609111901574_Teste.resx">
+      <DependentUpon>201609111901574_Teste.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609050948595_AddedLogClass.resx">
-      <DependentUpon>201609050948595_AddedLogClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609051119034_ToDecimal.resx">
-      <DependentUpon>201609051119034_ToDecimal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609251640309_NotRequired.resx">
+      <DependentUpon>201609251640309_NotRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

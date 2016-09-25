@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Infrastructure;
+using System.Threading.Tasks;
 
 namespace StartupCentral.Models
 {
@@ -16,6 +17,7 @@ namespace StartupCentral.Models
         public Startupbs()
         {
             this.Contatos = new HashSet<Contato>();
+            this.Observacoes = new List<Observacoes>();
         }
 
 
@@ -25,11 +27,11 @@ namespace StartupCentral.Models
         [Required(ErrorMessage = "Nome não pode ser branco."), Display(Name = "Nome*")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Email não pode ser branco."), Display(Name = "Email*")]
+        [Display(Name = "Email*")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Microsoft Account não pode ser branco."), Display(Name = "Microsoft Account*")]
+        [Display(Name = "Microsoft Account*")]
         public string MicrosoftAccount { get; set; }
 
         [Display(Name = "BizSpark ID")]
@@ -60,11 +62,12 @@ namespace StartupCentral.Models
         [Display(Name = "Consumo Acumulado do Ano"), DataType(DataType.Currency)]
         public decimal ConsumoAcumulado { get; set; }
 
-        //[DisplayFormat(DataFormatString = "{0,c}")]
         [Display(Name = "Consumo Pago"), DataType(DataType.Currency)]
         public decimal ConsumoPago { get; set; }
 
-        public string Observacoes { get; set; }
+        [Display(Name = "Observações | Comentários")]
+        [StringLength(120)]
+        public virtual ICollection<Observacoes> Observacoes { get; set; }
 
         public string Owner { get; set; }
     }
@@ -82,6 +85,7 @@ namespace StartupCentral.Models
         public DbSet<Roles> Roles { get; set; }
         public DbSet<GeneralLog> GeneralLogs { get; set; }
         public DbSet<Log> logs { get; set; }
+        public DbSet<Observacoes> Observacoes { get; set; }
 
         public StartupDBContext()
         {
@@ -92,10 +96,24 @@ namespace StartupCentral.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToOneConstraintIntroductionConvention>();
+
+            modelBuilder.Entity<Observacoes>().
+                HasRequired<Startupbs>(s => s.Startupbs).
+                WithMany(s => s.Observacoes);
+
+            modelBuilder.Entity<Observacoes>().
+                HasRequired<Aceleradora>(s => s.Aceleradora).
+                WithMany(s => s.Observacoes);
+
+            modelBuilder.Entity<Startupbs>().
+                HasRequired<Aceleradora>(s => s.Aceleradora).
+                WithMany(s => s.Startups);
+
             base.OnModelCreating(modelBuilder);
         }
 
-        public override int SaveChanges()
+        public override Task<int> SaveChangesAsync()
         {
             // Detecta as alterações existentes na instância corrente do DbContext.
             this.ChangeTracker.DetectChanges();
@@ -118,7 +136,7 @@ namespace StartupCentral.Models
                 this.Entry(item).State = EntityState.Added;
             }
             // Persiste as informações na fonte de dados.
-            return base.SaveChanges();
+            return base.SaveChangesAsync();
         }
 
         /// <summary>
@@ -129,7 +147,9 @@ namespace StartupCentral.Models
             return ChangeTracker.Entries().Where(e => (e.State == EntityState.Modified ||
                                                         e.State == EntityState.Added ||
                                                         e.State == EntityState.Deleted) &&
-                                                        e.Entity.GetType() != typeof(Log));
+                                                        e.Entity.GetType() != typeof(Log) &&
+                                                        e.Entity.GetType() != typeof(GeneralLog) &&
+                                                        e.Entity.GetType() != typeof(LogLogin));
         }
 
         /// <summary>

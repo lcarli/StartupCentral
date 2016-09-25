@@ -8,16 +8,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StartupCentral.Models;
+using System.Security.Claims;
 
 namespace StartupCentral.Controllers
 {
     public class AceleradoraController : Controller
     {
         private StartupDBContext db = new StartupDBContext();
+        User user = HomeController.userlogged;
 
         // GET: Aceleradora
         public async Task<ActionResult> Index()
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
+            var userID = User.Identity;
             var aceleradora = db.Aceleradora.Include(a => a.Beneficio).Include(a=>a.Endereco).Include(a=>a.Contatos).Include(a=>a.Startups);
             return View(await aceleradora.ToListAsync());
         }
@@ -25,6 +30,8 @@ namespace StartupCentral.Controllers
         // GET: Aceleradora/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             List<Contato> lc = (from c in db.Contato where c.Startup.Any(s => s.StartupbsId == id) select c).ToList();
             if (id == null)
             {
@@ -36,14 +43,16 @@ namespace StartupCentral.Controllers
             {
                 return HttpNotFound();
             }
-            //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = aceleradora.Nome, UserId= HomeController.useridsession });
-            //await db.SaveChangesAsync();
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Consultou, ObjectUsed = aceleradora.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
+            await db.SaveChangesAsync();
             return View(aceleradora);
         }
 
         // GET: Aceleradora/Create
         public ActionResult Create()
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome");
             return View();
         }
@@ -59,8 +68,8 @@ namespace StartupCentral.Controllers
             {
                 db.Aceleradora.Add(aceleradora);
                 await db.SaveChangesAsync();
-                //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = aceleradora.Nome, UserId = HomeController.useridsession });
-                //await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Salvou, ObjectUsed = aceleradora.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -71,6 +80,8 @@ namespace StartupCentral.Controllers
         // GET: Aceleradora/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             List<Contato> lc = (from c in db.Contato where c.Startup.Any(s => s.StartupbsId == id) select c).ToList();
             if (id == null)
             {
@@ -97,8 +108,8 @@ namespace StartupCentral.Controllers
             {
                 db.Entry(aceleradora).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = aceleradora.Nome, UserId = HomeController.useridsession });
-                //await db.SaveChangesAsync();
+                db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Editou, ObjectUsed = aceleradora.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.BeneficioId = new SelectList(db.Benefício, "BeneficioId", "Nome", aceleradora.BeneficioId);
@@ -108,6 +119,8 @@ namespace StartupCentral.Controllers
         // GET: Aceleradora/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            ViewBag.Nome = user.nome.ToString();
+            ViewBag.UserId = user.UserId;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -128,8 +141,8 @@ namespace StartupCentral.Controllers
             Aceleradora aceleradora = await db.Aceleradora.FindAsync(id);
             db.Aceleradora.Remove(aceleradora);
             await db.SaveChangesAsync();
-            //db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = aceleradora.Nome, UserId= HomeController.useridsession });
-            //await db.SaveChangesAsync();
+            db.GeneralLogs.Add(new GeneralLog { Datetime = DateTime.Now, Action = UserAction.Deletou, ObjectUsed = aceleradora.Nome, UserId = db.User.Where(u => u.email == user.email).FirstOrDefault().UserId });
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
